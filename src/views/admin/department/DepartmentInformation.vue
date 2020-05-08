@@ -78,12 +78,12 @@
                 })
             },
             handleEdit(index, row) {
+
                 console.log(index, row);
                 this.$prompt('请输入部门名称', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     // inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-                    inputErrorMessage: '邮箱格式不正确'
                 }).then(({ value }) => {
                     axios.post('http://localhost:8181/updateDepartment/'+row.id+'/'+value).then(function (resp) {
                         window.location.reload()
@@ -96,6 +96,13 @@
                 });
             },
             handleDelete(index, row) {
+                if (row.aaa!=0){
+                    this.$notify.error({
+                        title: '错误',
+                        message: '部门中还有员工，不能解散'
+                    });
+                    return
+                }
                 this.$confirm('确定解散部门？', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
