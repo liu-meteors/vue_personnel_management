@@ -175,7 +175,7 @@
                                     message: '修改成功',
                                     type: 'success'
                                 });
-                                _this.$router.push('/employeeInformation')
+                                _this.$router.push('/empInformation')
                             }else {
                                 _this.$message({
                                     showClose: true,

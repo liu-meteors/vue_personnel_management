@@ -1,51 +1,98 @@
 <template>
-    <div>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="员工名称" prop="username">
-                <el-input :disabled="true" v-model="ruleForm.username" style="width: 60%"></el-input>
-            </el-form-item>
-            <el-form-item label="电话" prop="phone">
-                <el-input :disabled="true" v-model="ruleForm.phone" style="width: 60%"></el-input>
-            </el-form-item>
-            <el-form-item label="住址" prop="address">
-                <el-input :disabled="true" v-model="ruleForm.address" style="width: 60%"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password">
-                <el-input :disabled="true" v-model="ruleForm.password" type="password" style="width: 60%"></el-input>
-            </el-form-item>
-            <el-form-item label="底薪" prop="salary">
-                <el-input :disabled="true" v-model="ruleForm.salary"  style="width: 60%"></el-input>
-            </el-form-item>
-            <el-form-item label="部门" prop="department">
-                <el-select :disabled="true" v-model="ruleForm.department" placeholder="请选择部门">
-                    <el-option v-for="item in departmentForm" :label="item.name" :value="item.id"></el-option>
-                    <!--                <el-option label="区域二" value="beijing"></el-option>-->
-                </el-select>
-            </el-form-item>
-            <el-form-item label="职位" prop="posite">
-                <el-select :disabled="true" v-model="ruleForm.posite" placeholder="请选择职位">
-                    <el-option v-for="item in positionForm" :label="item.name" :value="item.id"></el-option>
-                    <!--                <el-option label="区域二" value="beijing"></el-option>-->
-                </el-select>
-            </el-form-item>
-            <el-form-item  label="签约时间" prop="startToOver">
-                <el-date-picker
-                        :disabled="true"
-                        v-model="ruleForm.startToOver"
-                        type="datetimerange"
-                        start-placeholder="开始日期"
-                        end-placeholder="结束日期"
-                        :picker-options="pickerOption"
-                >
-                    <!--                    :default-time="['12:00:00']"-->
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="员工信息" name="first">
+            <div>
+                <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="员工名称" prop="username">
+                        <el-input :disabled="true" v-model="ruleForm.username" style="width: 60%"></el-input>
+                    </el-form-item>
+                    <el-form-item label="电话" prop="phone">
+                        <el-input :disabled="true" v-model="ruleForm.phone" style="width: 60%"></el-input>
+                    </el-form-item>
+                    <el-form-item label="住址" prop="address">
+                        <el-input :disabled="true" v-model="ruleForm.address" style="width: 60%"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                        <el-input :disabled="true" v-model="ruleForm.password" type="password" style="width: 60%"></el-input>
+                    </el-form-item>
+                    <el-form-item label="底薪" prop="salary">
+                        <el-input :disabled="true" v-model="ruleForm.salary"  style="width: 60%"></el-input>
+                    </el-form-item>
+                    <el-form-item label="部门" prop="department">
+                        <el-select :disabled="true" v-model="ruleForm.department" placeholder="请选择部门">
+                            <el-option v-for="item in departmentForm" :label="item.name" :value="item.id"></el-option>
+                            <!--                <el-option label="区域二" value="beijing"></el-option>-->
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="职位" prop="posite">
+                        <el-select :disabled="true" v-model="ruleForm.posite" placeholder="请选择职位">
+                            <el-option v-for="item in positionForm" :label="item.name" :value="item.id"></el-option>
+                            <!--                <el-option label="区域二" value="beijing"></el-option>-->
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item  label="签约时间" prop="startToOver">
+                        <el-date-picker
+                                :disabled="true"
+                                v-model="ruleForm.startToOver"
+                                type="datetimerange"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :picker-options="pickerOption"
+                        >
+                            <!--                    :default-time="['12:00:00']"-->
 
-                </el-date-picker>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">修改</el-button>
-            </el-form-item>
-        </el-form>
-    </div>
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="submitForm('ruleForm')">修改</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </el-tab-pane>
+        <el-tab-pane label="晋升信息" name="second">
+            <div>
+                <el-table
+                        :data="promotion"
+                        style="width: 100%">
+                    <el-table-column
+                            label="变更日期"
+                            prop="changeDateStr"
+                            sortable
+                    >
+                    </el-table-column>
+                    <el-table-column
+                            label="姓名"
+                            prop="enpName">
+                    </el-table-column>
+                    <el-table-column
+                            label="变更前"
+                            prop="oldPositionName">
+                    </el-table-column>
+                    <el-table-column
+                            label="变更后"
+                            prop="newPositionName">
+                    </el-table-column>
+                    <el-table-column
+                            prop="tag"
+                            label="变更"
+                            width="100"
+                            :filters="[{ text: '升职', value: '升职' }, { text: '降职', value: '降职' }]"
+                            :filter-method="filterTag"
+                            filter-placement="bottom-end">
+                        <template slot-scope="scope">
+                            <el-tag
+                                    v-if="promotion.length!=0"
+                                    :type="scope.row.transferred === '升职' ? 'success' : 'danger'"
+                                    disable-transitions>{{scope.row.transferred}}</el-tag>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+        </el-tab-pane>
+        <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+        <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+    </el-tabs>
+
 </template>
 
 <script>
@@ -53,6 +100,15 @@
         name: "AddEmployee",
         data() {
             return {
+                activeName: 'first',
+                search: '',
+                promotion:[{
+                    changeDateStr: '',
+                    enpName: '',
+                    oldPositionName: '',
+                    newPositionName: '',
+                    transferred: ''
+                }],
                 ruleForm: {
                     id: '',
                     username: '',
@@ -131,11 +187,28 @@
             };
         },
         methods: {
+            filterTag(value, row) {
+                return row.tag === value;
+            },
+            getPromotion(){
+                const _this=this
+                axios.get('http://localhost:8181/getPromotionByEmpIdYear/'+sessionStorage.getItem('empId')).then(function (resp) {
+                    console.log(resp.data)
+                    _this.promotion=resp.data
+                })
+            },
             getEmployeeById(id){
                 const _this=this
                 axios.get('http://localhost:8181/getEmpById/'+id).then(function (resp) {
                     _this.ruleForm=resp.data
                 })
+            },
+            handleClick(tab, event) {
+                console.log(tab, event);
+                if (tab!='first'){
+                    this.getPromotion()
+
+                }
             },
             getDepartment(){
                 const dep=this
@@ -151,35 +224,6 @@
             },
             submitForm(formName) {
                 this.$router.push('/updateEmpInformation')
-                // const _this=this
-                //
-                // this.$refs[formName].validate((valid) => {
-                //     if (valid) {
-                //         axios.put('http://localhost:8181/updateEmployee',_this.ruleForm).then(function (resp) {
-                //             if (resp.data=='success'){
-                //                 _this.$message({
-                //                     showClose: true,
-                //                     message: '修改成功',
-                //                     type: 'success'
-                //                 });
-                //                 _this.$router.push('/employeeInformation')
-                //             }else {
-                //                 _this.$message({
-                //                     showClose: true,
-                //                     message: '添加失败',
-                //                     type: 'error'
-                //                 });
-                //             }
-                //         })
-                //     } else {
-                //         _this.$message({
-                //             showClose: true,
-                //             message: '添加失败',
-                //             type: 'error'
-                //         });
-                //         return false;
-                //     }
-                // });
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();

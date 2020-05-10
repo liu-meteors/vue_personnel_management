@@ -29,17 +29,9 @@
                 filter-placement="bottom-end">
             <template slot-scope="scope">
                 <el-tag
+                        v-if="tableData.length!=0"
                         :type="scope.row.transferred === '升职' ? 'success' : 'danger'"
                         disable-transitions>{{scope.row.transferred}}</el-tag>
-            </template>
-        </el-table-column>
-        <el-table-column
-                align="right">
-            <template slot="header" slot-scope="scope">
-                <el-input
-                        v-model="search"
-                        size="mini"
-                        placeholder="输入关键字搜索"/>
             </template>
         </el-table-column>
     </el-table>
