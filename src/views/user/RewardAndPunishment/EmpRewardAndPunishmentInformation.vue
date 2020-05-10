@@ -25,6 +25,7 @@
                 :filter-method="filterHandler">
             <template slot-scope="scope">
                 <el-tag
+                        v-if="tableData.length!=0"
                         :type="scope.row.typeName === '奖励' ? 'success' : 'error'"
                         disable-transitions>{{scope.row.typeName}}</el-tag>
             </template>

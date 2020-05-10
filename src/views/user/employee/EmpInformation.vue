@@ -89,7 +89,42 @@
                 </el-table>
             </div>
         </el-tab-pane>
-        <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+        <el-tab-pane label="奖惩信息" name="third">
+            <div>
+                <el-table
+                        :data="award"
+                        style="width: 100%">
+                    <el-table-column
+                            label="申请日期"
+                            prop="recordDateStr"
+                            sortable
+                    >
+                    </el-table-column>
+                    <el-table-column
+                            label="名称"
+                            prop="empName">
+                    </el-table-column>
+                    <el-table-column
+                            label="金额"
+                            prop="money">
+                    </el-table-column>
+                    <el-table-column
+                            label="审批状态"
+                            prop="typeName"
+                            width="180"
+                            column-key="date"
+                            :filters="[{text: '奖励', value: '奖励'}, {text: '惩罚', value: '惩罚'}]"
+                            :filter-method="filterHandler">
+                        <template slot-scope="scope">
+                            <el-tag
+                                    v-if="award.length!=0"
+                                    :type="scope.row.typeName === '奖励' ? 'success' : 'error'"
+                                    disable-transitions>{{scope.row.typeName}}</el-tag>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+        </el-tab-pane>
         <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
     </el-tabs>
 
@@ -109,6 +144,16 @@
                     newPositionName: '',
                     transferred: ''
                 }],
+                award:[
+                    {
+                        id: '',
+                        empId: '',
+                        recordDateStr: '',
+                        empName: '',
+                        typeName: '',
+                        money: ''
+                    }
+                ],
                 ruleForm: {
                     id: '',
                     username: '',
@@ -187,6 +232,18 @@
             };
         },
         methods: {
+            getAward(){
+                const _this=this
+                const empId=sessionStorage.getItem("empId")
+                axios.get('http://localhost:8181/getAllAwardByEmpYear/'+empId).then(function (resp) {
+                    console.log(resp.data)
+                    _this.award=resp.data
+                })
+            },
+            filterHandler(value, row, column) {
+                const property = column['property'];
+                return row[property] === value;
+            },
             filterTag(value, row) {
                 return row.tag === value;
             },
@@ -204,9 +261,18 @@
                 })
             },
             handleClick(tab, event) {
+                const me=this
                 console.log(tab, event);
-                if (tab!='first'){
-                    this.getPromotion()
+                switch (tab.name) {
+                    case 'first':
+                        me.getEmployeeById(sessionStorage.getItem('empId'));
+                        break;
+                    case 'second':
+                        me.getPromotion();
+                        break;
+                    case  'third':
+                        me.getAward();
+                        break;
 
                 }
             },
