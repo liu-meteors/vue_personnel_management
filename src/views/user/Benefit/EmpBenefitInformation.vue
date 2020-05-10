@@ -42,7 +42,6 @@
                             <el-button
                                     size="mini"
                                     @click="handleEdit(scope.$index, scope.row)"
-                                    :disabled="scope.row.isFillIn==1"
                             >编辑</el-button>
                         </template>
                     </el-table-column>
@@ -50,6 +49,55 @@
             </div>
         </el-tab-pane>
         <el-tab-pane label="所有信息" name="second">
+            <div>
+                <el-table
+                        ref="filterTable"
+                        :data="tableData"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="benYear"
+                            label="年份"
+                            sortable
+                            width="180"
+                            column-key="date"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                            prop="quarterStr"
+                            label="季度"
+                            width="180"
+                            :filters="[{ text: '第一季度', value: '第一季度' }, { text: '第二季度', value: '第二季度' },{ text: '第三季度', value: '第三季度' },{ text: '第四季度', value: '第四季度' }]"
+                            :filter-method="filterTag"
+                            filter-placement="bottom-end">
+                        <!--                        <template slot-scope="scope">-->
+                        <!--                            <el-tag-->
+                        <!--                                    :type="scope.row.tag === '家' ? 'primary' : 'success'"-->
+                        <!--                                    disable-transitions>{{scope.row.tag}}</el-tag>-->
+                        <!--                        </template>-->
+                    </el-table-column>
+                    <el-table-column
+                            prop="departmentName"
+                            label="部门"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="money"
+                            label="效益(单位：万元)"
+                    >
+                    </el-table-column>
+<!--                    <el-table-column label="编辑">-->
+<!--                        <template slot-scope="scope">-->
+<!--                            <el-button-->
+<!--                                    size="mini"-->
+<!--                                    @click="handleEdit(scope.$index, scope.row)"-->
+<!--                                    :disabled="scope.row.isFillIn==1"-->
+<!--                            >编辑</el-button>-->
+<!--                        </template>-->
+<!--                    </el-table-column>-->
+                </el-table>
+            </div>
+        </el-tab-pane>
+        <el-tab-pane label="所有信息" name="third">
             <div>
                 <el-table
                         ref="filterTable"
@@ -140,10 +188,16 @@
                 })
             },
             handleClick(tab, event) {
-                if (tab.name=='first'){
-                    alert(111)
-                }else {
-                    alert(2222)
+                switch (tab.name) {
+                    case 'first':
+                        this.getYearBenefit(  sessionStorage.getItem("dep"))
+                        break;
+                    case 'second':
+                        this.getYearBenefit(  sessionStorage.getItem("dep"))
+                        break;
+                    case 'third':
+                        alert(333)
+                        break;
                 }
                 console.log(tab, event);
             },
@@ -168,16 +222,10 @@
                     inputPattern: /^[1-9][0-9]*([.][0-9]+)?$/,
                     inputErrorMessage: '请输入整数或小数'
                 }).then(({ value }) => {
-                    // this.$message({
-                    //     type: 'success',
-                    //     message: '你的邮箱是: ' + value
                     me.benefit.money=value
                     me.benefit.department=sessionStorage.getItem('dep')
-                    me.$message({
-                        message: me.benefit.money,
-                        type: 'success'
-                    });
-                    axios.post('http://localhost:8181/addBenefit',me.benefit).then(function (resp) {
+                    me.benefit.id=row.id
+                    axios.put('http://localhost:8181/updateBenefit',me.benefit).then(function (resp) {
                         // });
                         if (resp.data=='success'){
                             window.location.reload()
