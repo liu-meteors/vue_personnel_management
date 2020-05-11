@@ -42,7 +42,7 @@ import EmpBenefitInformation from "../views/user/Benefit/EmpBenefitInformation";
 import AdminBenefitInformation from "../views/admin/Benefit/AdminBenefitInformation";
 import AdminAddInterView from "../views/admin/employee/AdminAddInterView";
 import ContractInformation from "../views/admin/Contract/ContractInformation";
-
+import EmpRecruitInformation from "../views/user/employee/EmpRecruitInformation";
 Vue.use(VueRouter)
 const routes = [
   //
@@ -135,6 +135,11 @@ const routes = [
         path: '/empBenefitInformation',
         name: '效益信息',
         component: EmpBenefitInformation
+      },
+      {
+        path: '/empRecruitInformation',
+        name: '员工招聘信息',
+        component: EmpRecruitInformation
       }
     ]
   },
