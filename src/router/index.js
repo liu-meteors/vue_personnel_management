@@ -43,6 +43,10 @@ import AdminBenefitInformation from "../views/admin/Benefit/AdminBenefitInformat
 import AdminAddInterView from "../views/admin/employee/AdminAddInterView";
 import ContractInformation from "../views/admin/Contract/ContractInformation";
 import EmpRecruitInformation from "../views/user/employee/EmpRecruitInformation";
+import EmpInterview from "../views/user/employee/EmpInterview";
+import EmpAddInterView from "../views/user/employee/EmpAddInterView";
+
+
 Vue.use(VueRouter)
 const routes = [
   //
@@ -140,6 +144,16 @@ const routes = [
         path: '/empRecruitInformation',
         name: '员工招聘信息',
         component: EmpRecruitInformation
+      },
+      {
+        path: '/empInterview',
+        name: '员工面试信息',
+        component: EmpInterview
+      },
+      {
+        path: '/empAddInterView',
+        name: '添加面试信息',
+        component: EmpAddInterView
       }
     ]
   },

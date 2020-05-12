@@ -57,6 +57,12 @@
                     <el-menu-item index="/empRecruitInformation" :route="{name:'员工招聘信息'}"><i class="el-icon-bank-card"></i>
                         招聘信息
                     </el-menu-item>
+                    <el-menu-item index="/empInterview" :route="{name:'员工面试信息'}"><i class="el-icon-bank-card"></i>
+                        面试信息
+                    </el-menu-item>
+                    <el-menu-item index="/empAddInterView" :route="{name:'添加面试信息'}"><i class="el-icon-bank-card"></i>
+                        新增面试
+                    </el-menu-item>
                     <el-menu-item index="/empRewardAndPunishmentInformation" :route="{name:'empRewardAndPunishmentInformation'}"><i class="el-icon-bank-card"></i>
                         奖惩信息
                     </el-menu-item>
