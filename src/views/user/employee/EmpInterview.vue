@@ -66,10 +66,24 @@
                                     :disabled="scope.row.isView==1"
                                     size="mini"
                                     @click="interview(scope.$index, scope.row)">面试</el-button>
-                            <el-button
-                                    :disabled="scope.row.isSend==1"
-                                    size="mini"
-                                    @click="send(scope.$index, scope.row)">发送</el-button>
+                            <el-popover
+                                    placement="right"
+                                    width="50"
+                                    trigger="click">
+                                <el-upload
+                                        class="upload-demo"
+                                        action="http://localhost:8181/importMail"
+                                        :on-preview="handlePreview"
+                                        multiple
+                                        :limit="1"
+                                        accept=".doc, .docx"
+                                        :on-success="handleAvatarSuccess"
+                                        :file-list="fileList">
+                                    <el-button size="small" type="primary">点击上传</el-button>
+                                    <div slot="tip" class="el-upload__tip">只能上传doc/docx文件，且不超过100MB</div>
+                                </el-upload>
+                                <el-button size="mini" slot="reference" :disabled="scope.row.isSend==1" @click="sendMail(scope.$index, scope.row)">发送</el-button>
+                            </el-popover>
                             <el-button
                                     size="mini"
                                     type="danger"
@@ -145,10 +159,24 @@
                                     :disabled="scope.row.isView==1"
                                     size="mini"
                                     @click="interview(scope.$index, scope.row)">面试</el-button>
-                            <el-button
-                                    :disabled="scope.row.isSend==1"
-                                    size="mini"
-                                    @click="send(scope.$index, scope.row)">发送</el-button>
+                            <el-popover
+                                    placement="right"
+                                    width="50"
+                                    trigger="click">
+                                <el-upload
+                                        class="upload-demo"
+                                        action="http://localhost:8181/importMail"
+                                        :on-preview="handlePreview"
+                                        multiple
+                                        :limit="1"
+                                        accept=".doc, .docx"
+                                        :on-success="handleAvatarSuccess"
+                                        :file-list="fileList">
+                                    <el-button size="small" type="primary">点击上传</el-button>
+                                    <div slot="tip" class="el-upload__tip">只能上传doc/docx文件，且不超过100MB</div>
+                                </el-upload>
+                                <el-button size="mini" slot="reference" :disabled="scope.row.isSend==1" @click="sendMail(scope.$index, scope.row)">发送</el-button>
+                            </el-popover>
                             <el-button
                                     size="mini"
                                     type="danger"
@@ -167,7 +195,10 @@
         name: "AdminPromotionInformation",
         data() {
             return {
+                fileList: '',
                 activeName: 'first',
+                empId: '',
+                sendIndex: '',
                 tableData: [{
                     id: '',
                     name: '',
@@ -197,6 +228,47 @@
             }
         },
         methods: {
+            sendMail(index, row){
+                this.empId=row.id
+                this.sendIndex=index
+            },
+            updateSend(id){
+                const _this=this
+                _this.tableData[_this.sendIndex].isSend=1
+                _this.tableData[_this.sendIndex].isView=1
+                axios.put('http://localhost:8181/updateInterviewById',_this.tableData[_this.sendIndex]).then(function (resp) {
+                    if (resp.data=='success'){
+                        _this.$notify({
+                            title: '成功',
+                            message: '发送成功',
+                            type: 'success'
+                        });
+                    }else {
+                        _this.tableData[_this.sendIndex].isSend=0
+                        _this.$notify.error({
+                            title: '错误',
+                            message: '发送失败'
+                        });
+                    }
+                })
+            },
+            handleAvatarSuccess(response, file, fileList) {
+                const _this=this
+                axios.get('http://localhost:8181/sendOffer/'+response.fileName+'/'+_this.empId).then(function (resp) {
+                    if (resp.data=='success'){
+                        _this.updateSend(_this.empId)
+
+                    }else {
+                        _this.$notify.error({
+                            title: '错误',
+                            message: '发送失败'
+                        });
+                    }
+                })
+            },
+            handlePreview(file) {
+                console.log(file);
+            },
             getDepartment(){
                 const dep=this
                 axios.get('http://localhost:8181/getAllDepartment').then(function (resp) {
@@ -278,8 +350,17 @@
                 })
             },
             handleDelete(index, row) {
-
-
+                const _this=this
+                axios.delete('http://localhost:8181/deleteInterviewById/'+row.id).then(function (resp) {
+                    if (resp.data=='success'){
+                        window.location.reload()
+                    }else {
+                        _this.$notify.error({
+                            title: '错误',
+                            message: '删除失败'
+                        });
+                    }
+                })
             },
         },
         created() {
