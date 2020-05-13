@@ -2,17 +2,17 @@
     <div class="login-container">
         <el-form ref="form" :rules="rules" :model="form" label-width="80px" class="login-form">
             <h2 class="login-title">人事管理系统</h2>
-            <el-form-item label="选择身份">
-                <el-select v-model="form.identity" placeholder="请选择身份" style="width: 100%;">
+            <el-form-item >
+                <el-select v-model="form.identity"  style="width: 100%;">
                     <el-option  label="管理员" value="admin"></el-option>
                     <el-option label="员工" value="user"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="用户名" prop="username">
-                <el-input v-model="form.username"></el-input>
+            <el-form-item prop="username" placeholder="请输入用户名">
+                <el-input v-model="form.username"  placeholder="请输入用户名"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
-                <el-input  type="password" v-model="form.password"></el-input>
+            <el-form-item prop="password"  >
+                <el-input  type="password" v-model="form.password" placeholder="请输入密码"></el-input>
             </el-form-item>
 
             <el-form-item>

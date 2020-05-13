@@ -10,27 +10,27 @@
                 <el-radio :label="20">非常满意</el-radio>
             </el-radio-group>
         </el-form-item>
-        <el-form-item label="对于他的日常工作满不满意" prop="question1">
+        <el-form-item label="在工作的时候是否有偷奸耍滑" prop="question1">
             <br>
             <el-radio-group  v-model="ruleForm.question1">
-                <el-radio :label="4">非常不满意</el-radio>
-                <el-radio :label="8">比较不满意</el-radio>
-                <el-radio :label="12">一般</el-radio>
-                <el-radio :label="16">比较满意</el-radio>
-                <el-radio :label="20">非常满意</el-radio>
+                <el-radio :label="4">一直</el-radio>
+                <el-radio :label="8">经常有</el-radio>
+                <el-radio :label="12">还好</el-radio>
+                <el-radio :label="16">偶尔</el-radio>
+                <el-radio :label="20">从来没有</el-radio>
             </el-radio-group>
         </el-form-item>
-        <el-form-item label="对于他的日常工作满不满意" prop="question3">
+        <el-form-item label="相公工作素质能否赶得上现在的工作" prop="question3">
             <br>
             <el-radio-group v-model="ruleForm.question3">
-                <el-radio :label="4">非常不满意</el-radio>
-                <el-radio :label="8">比较不满意</el-radio>
+                <el-radio :label="4">非常擦</el-radio>
+                <el-radio :label="8">比较差</el-radio>
                 <el-radio :label="12">一般</el-radio>
-                <el-radio :label="16">比较满意</el-radio>
-                <el-radio :label="20">非常满意</el-radio>
+                <el-radio :label="16">比较好</el-radio>
+                <el-radio :label="20">非常好</el-radio>
             </el-radio-group>
         </el-form-item>
-        <el-form-item label="对于他的日常工作满不满意" prop="question4">
+        <el-form-item label="对于他的工作态度满不满意" prop="question4">
             <br>
             <el-radio-group v-model="ruleForm.question4">
                 <el-radio :label="4">非常不满意</el-radio>
@@ -40,7 +40,7 @@
                 <el-radio :label="20">非常满意</el-radio>
             </el-radio-group>
         </el-form-item>
-        <el-form-item label="对于他的日常工作满不满意" prop="question5">
+        <el-form-item label="对于他的工作进度满不满意" prop="question5">
             <br>
             <el-radio-group v-model="ruleForm.question5">
                 <el-radio :label="4">非常不满意</el-radio>
@@ -51,7 +51,7 @@
             </el-radio-group>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')">立即提交</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
     </el-form>
@@ -74,19 +74,19 @@
                 },
                 rules: {
                     question1: [
-                        { required: true, message: '请选择活动资源', trigger: 'change' }
+                        { required: true, message: '请填写问题', trigger: 'change' }
                     ],
                     question2: [
-                        { required: true, message: '请选择活动资源', trigger: 'change' }
+                        { required: true, message: '请填写问题', trigger: 'change' }
                     ],
                     question3: [
-                        { required: true, message: '请选择活动资源', trigger: 'change' }
+                        { required: true, message: '请填写问题', trigger: 'change' }
                     ],
                     question4: [
-                        { required: true, message: '请选择活动资源', trigger: 'change' }
+                        { required: true, message: '请填写问题', trigger: 'change' }
                     ],
                     question5: [
-                        { required: true, message: '请选择活动资源', trigger: 'change' }
+                        { required: true, message: '请填写问题', trigger: 'change' }
                     ],
                 }
             };
