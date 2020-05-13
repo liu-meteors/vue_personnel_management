@@ -5,11 +5,6 @@
                     :data="tableData"
                     style="width: 100%">
                 <el-table-column
-                        prop="payDate"
-                        label="日期"
-                        width="180">
-                </el-table-column>
-                <el-table-column
                         prop="name"
                         label="姓名"
                         width="180">
@@ -112,13 +107,16 @@
             return {
                 activeName: '1',
                 tableData: [{
-                    payDate: '',
+                    empNumber: '',
                     name: '',
                     bonus: '',
                     forfeit: '',
                     money: '',
                     gradeMoney: '',
                     allMoney: '',
+                    departmentName: '',
+                    positionName: '',
+                    payDateStr: ''
                 }],
                 monthLeave: [
                     {
@@ -159,7 +157,7 @@
                 const empId=sessionStorage.getItem("empId")
                 axios.get('http://localhost:8181/getSalaryByEmpNow/'+empId).then(function (resp) {
                     me.tableData=resp.data
-
+                    console.log(resp)
                 })
             },
             getMonthLeave(){

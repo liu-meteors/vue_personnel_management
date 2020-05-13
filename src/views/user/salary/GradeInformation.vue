@@ -78,15 +78,15 @@
                     date:nowDate.getDate(),
                 }
                 // alert(date.year+'-'+date.month+'-'+date.date)
-                // if (date.date<29){
-                //     this.$notify({
-                //         title: '警告',
-                //         message: '现在不是打分时间段',
-                //         type: 'warning'
-                //     });
-                //     return
-                //
-                // }
+                if (date.date<29){
+                    this.$notify({
+                        title: '警告',
+                        message: '现在不是打分时间段',
+                        type: 'warning'
+                    });
+                    return
+
+                }
                 if (row.isGrade=='已评分'){
                     this.$notify.error({
                         title: '错误',

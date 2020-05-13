@@ -155,7 +155,7 @@
             },
             handleClick(tab, event) {
                 console.log(tab, event);
-                if (tab=='first'){
+                if (tab.name=='first'){
                     this.getLeaveNow()
                 }else {
                     this.getLeave()
