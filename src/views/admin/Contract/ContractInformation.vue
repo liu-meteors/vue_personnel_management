@@ -37,12 +37,12 @@
                             <el-button size="small" type="primary">点击上传</el-button>
                             <div slot="tip" class="el-upload__tip">只能上传doc/docx文件，且不超过100MB</div>
                         </el-upload>
-                        <el-button size="mini" slot="reference">上传合同</el-button>
+                        <el-button size="mini" slot="reference" @click="uploadContract(scope.$index, scope.row)">上传合同</el-button>
                     </el-popover>
                     <el-button
                             size="mini"
                             type="success"
-                            @click="handleDelete(scope.$index, scope.row)">下载合同</el-button>
+                            @click="handleDownLoad(scope.$index, scope.row)">下载合同</el-button>
 
 
                 </template>
@@ -70,6 +70,7 @@
                 // pageSize: '',
                 // total: '',
                 fileList: '',
+                index: '',
                 tableData: [{
                     id: '',
                     department: '',
@@ -126,8 +127,9 @@
             },
             handleAvatarSuccess(response, file, fileList) {
                 const _this=this
-                _this.ruleForm.fileAddress=response.fileAddress
-                axios.post('http://localhost:8181/updateContract',_this.ruleForm).then(function (resp) {
+                _this.tableData[_this.index].fileAddress=response.fileAddress
+                alert( _this.tableData[_this.index].fileAddress)
+                axios.put('http://localhost:8181/updateContract',_this.tableData[_this.index]).then(function (resp) {
                     if (resp.data=='success'){
 
                         _this.$message({
@@ -146,14 +148,19 @@
                     // _this.$router.push('/employeeInformation')
                 })
             },
-            handleDelete(index, row) {
+            uploadContract(index, row){
+                this.index=index
+            },
+            handleDownLoad(index, row) {
                 const _this=this
                if (row.fileAddress==null){
-                   _this.$message({
-                       showClose: true,
+                   _this.$notify({
+                       title: '警告',
                        message: '合同文件不存在，请先上传',
-                       type: 'error'
+                       type: 'warning'
                    });
+               }else {
+                   window.open('http://localhost:8181/downloadContract/'+row.id+'?fileName='+row.departmentName+row.positionName+'的合同.doc')
                }
             }
         },

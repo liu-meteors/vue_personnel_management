@@ -63,27 +63,52 @@ const routes = [
       {
         path: '/empInformation',
         name: '个人信息',
-        component: EmpInformation
+        component: EmpInformation,
+        meta:[
+          {
+            access:0
+          }
+        ]
       },
       {
         path: '/updateEmpInformation',
         name: 'updateEmpInformation',
-        component: UpdateEmpInformation
+        component: UpdateEmpInformation,
+        meta:[
+          {
+            access:0
+          }
+        ]
       },
       {
         path: '/salaryInformation',
         name: 'empSalaryInformation',
-        component: SalaryInformation
+        component: SalaryInformation,
+        meta:[
+          {
+            access:0
+          }
+        ]
       },
       {
         path: '/empRewardAndPunishmentInformation',
         name: 'empRewardAndPunishmentInformation',
-        component: EmpRewardAndPunishmentInformation
+        component: EmpRewardAndPunishmentInformation,
+        meta:[
+          {
+            access:0
+          }
+        ]
       },
       {
         path: '/empOneRewardAndPunishmentInformation',
         name: 'empOneRewardAndPunishmentInformation',
-        component: EmpOneRewardAndPunishmentInformation
+        component: EmpOneRewardAndPunishmentInformation,
+        meta:[
+          {
+            access:0
+          }
+        ]
       },
       {
         path: '/empLeaveApply',

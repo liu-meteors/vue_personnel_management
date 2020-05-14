@@ -54,13 +54,13 @@
                     <el-menu-item index="/salaryInformation" :route="{name:'empSalaryInformation'}"><i class="el-icon-bank-card"></i>
                         工资信息
                     </el-menu-item>
-                    <el-menu-item index="/empRecruitInformation" :route="{name:'员工招聘信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empRecruitInformation" v-if="dep==1" :route="{name:'员工招聘信息'}"><i class="el-icon-bank-card"></i>
                         招聘信息
                     </el-menu-item>
-                    <el-menu-item index="/empInterview" :route="{name:'员工面试信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empInterview" v-if="dep==1" :route="{name:'员工面试信息'}"><i class="el-icon-bank-card"></i>
                         面试信息
                     </el-menu-item>
-                    <el-menu-item index="/empAddInterView" :route="{name:'添加面试信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empAddInterView" v-if="dep==1" :route="{name:'添加面试信息'}"><i class="el-icon-bank-card"></i>
                         新增面试
                     </el-menu-item>
                     <el-menu-item index="/empRewardAndPunishmentInformation" :route="{name:'empRewardAndPunishmentInformation'}"><i class="el-icon-bank-card"></i>
@@ -81,7 +81,7 @@
                     <el-menu-item index="/empPromotionInformation" :route="{name:'empPromotionInformation'}"><i class="el-icon-bank-card"></i>
                         晋升信息
                     </el-menu-item>
-                    <el-menu-item index="/empBenefitInformation" :route="{name:'效益信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empBenefitInformation" v-if="pos==1" :route="{name:'效益信息'}"><i class="el-icon-bank-card"></i>
                         效益信息
                     </el-menu-item>
 

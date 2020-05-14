@@ -15,13 +15,6 @@
                             <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
-<!--                    <el-dropdown>-->
-<!--                        <i class="el-icon-setting" style="margin-right: 15px"></i>-->
-<!--                        <el-dropdown-menu slot="dropdown">-->
-<!--                            <el-dropdown-item><a v-on:click="logout">退出</a></el-dropdown-item>-->
-<!--                        </el-dropdown-menu>-->
-<!--                        <span>{{adminName}}</span>-->
-<!--                    </el-dropdown>-->
                 </el-col>
             </el-row>
 
@@ -44,7 +37,7 @@
                     >
                         <!--index设置当前item的下标，:route则是传一个对象进行，指定路由-->
 
-                        <el-submenu index="1" v-if="dep==1||dep==0">
+                        <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-user-solid"></i><span>员工管理</span>
                             </template>
@@ -63,7 +56,7 @@
                             <el-menu-item index="/contractInformation" :route="{name:'合同信息'}">合同信息</el-menu-item>
                         </el-submenu>
 
-                        <el-submenu index="2">
+                        <el-submenu index="2" v-if="dep==0">
                             <template slot="title">
                                 <i class="el-icon-user-solid"></i>
                                 <span> 部门管理</span>
@@ -74,7 +67,7 @@
                             </el-menu-item>
                             <el-menu-item index="/addDepartment" :route="{name:'创建部门'}"><i class="fa fa-envelope-o"></i> 创建部门</el-menu-item>
                         </el-submenu>
-                        <el-submenu index="3" v-if="dep==2||dep==0">
+                        <el-submenu index="3" v-if="dep==1||dep==0">
                             <template slot="title">
                                 <i class="el-icon-bank-card"></i>
                                 <span> 薪资管理</span>
@@ -97,7 +90,7 @@
                             </el-menu-item>
                             <el-menu-item index="/addRewardOrPunishment" :route="{name:'添加奖惩信息'}"><i class="fa fa-envelope-o"></i> 惩罚登记</el-menu-item>
                         </el-submenu>
-                        <el-submenu index="5">
+                        <el-submenu index="5" v-if="dep==0">
                             <template slot="title">
                                 <i class="el-icon-bank-card"></i>
                                 <span> 效益管理</span>
@@ -107,7 +100,7 @@
                                 效益信息
                             </el-menu-item>
                         </el-submenu>
-                        <el-submenu index="6">
+                        <el-submenu index="6" v-if="dep==1||dep==0">
                             <template slot="title">
                                 <i class="el-icon-bank-card"></i>
                                 <span> 晋升管理</span>
