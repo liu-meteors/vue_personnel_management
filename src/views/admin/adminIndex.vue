@@ -53,7 +53,8 @@
                             <template slot="title">
                                 <i class="el-icon-user-solid"></i><span>合同管理</span>
                             </template>
-                            <el-menu-item index="/contractInformation" :route="{name:'合同信息'}">合同信息</el-menu-item>
+                            <el-menu-item index="/contractInformation" :route="{name:'合同信息'}">合同模板</el-menu-item>
+                            <el-menu-item index="/adminEmpContractHistory" :route="{name:'所有员工的合同历史'}">历史合同</el-menu-item>
                         </el-submenu>
 
                         <el-submenu index="2" v-if="dep==0">

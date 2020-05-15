@@ -45,6 +45,9 @@ import ContractInformation from "../views/admin/Contract/ContractInformation";
 import EmpRecruitInformation from "../views/user/employee/EmpRecruitInformation";
 import EmpInterview from "../views/user/employee/EmpInterview";
 import EmpAddInterView from "../views/user/employee/EmpAddInterView";
+import NewLogin from "../views/NewLogin";
+import AdminEmpContractHistory from "../views/admin/Contract/AdminEmpContractHistory";
+import AdminHistoryInformation from "../views/admin/Contract/AdminHistoryInformation";
 
 
 Vue.use(VueRouter)
@@ -54,6 +57,11 @@ const routes = [
     path: '/login',
     name: '登录',
     component: Login
+  },
+  {
+    path: '/newLogin',
+    name: '123',
+    component: NewLogin
   },
   {
     path: '/userIndex',
@@ -337,6 +345,16 @@ const routes = [
         path: '/contractInformation',
         name: '合同信息',
         component: ContractInformation
+      },
+      {
+        path: '/adminEmpContractHistory',
+        name: '所有员工的合同历史',
+        component: AdminEmpContractHistory
+      },
+      {
+        path: '/adminHistoryInformation',
+        name: '员工合同历史',
+        component: AdminHistoryInformation
       }
     ]
   }
