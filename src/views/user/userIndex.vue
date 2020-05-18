@@ -46,16 +46,14 @@
                         active-text-color="#ffd04b"
 
                 >
-                    <!--index设置当前item的下标，:route则是传一个对象进行，指定路由-->
-                    <el-menu-item :hidden="true" index="0" :route="{name:'登录'}">
-                        <i class="el-icon-house"></i>
-                        <span slot="title"> 首页</span>
-                    </el-menu-item>
                     <el-menu-item index="/salaryInformation" :route="{name:'empSalaryInformation'}"><i class="el-icon-bank-card"></i>
-                        工资信息
+                        本月总览
                     </el-menu-item>
                     <el-menu-item index="/empRecruitInformation" v-if="dep==1" :route="{name:'员工招聘信息'}"><i class="el-icon-bank-card"></i>
                         招聘信息
+                    </el-menu-item>
+                    <el-menu-item index="/empAllSalaryInformation" :route="{name:'全部工资信息'}"><i class="el-icon-bank-card"></i>
+                        工资信息
                     </el-menu-item>
                     <el-menu-item index="/empInterview" v-if="dep==1" :route="{name:'员工面试信息'}"><i class="el-icon-bank-card"></i>
                         面试信息

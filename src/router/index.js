@@ -48,7 +48,7 @@ import EmpAddInterView from "../views/user/employee/EmpAddInterView";
 import NewLogin from "../views/NewLogin";
 import AdminEmpContractHistory from "../views/admin/Contract/AdminEmpContractHistory";
 import AdminHistoryInformation from "../views/admin/Contract/AdminHistoryInformation";
-
+import EmpAllSalaryInformation from "../views/user/salary/EmpAllSalaryInformation";
 
 Vue.use(VueRouter)
 const routes = [
@@ -187,6 +187,16 @@ const routes = [
         path: '/empAddInterView',
         name: '添加面试信息',
         component: EmpAddInterView
+      },
+      {
+        path: '/empAllSalaryInformation',
+        name: '全部工资信息',
+        component: EmpAllSalaryInformation,
+        meta:[
+          {
+            access:-1
+          }
+        ]
       }
     ]
   },

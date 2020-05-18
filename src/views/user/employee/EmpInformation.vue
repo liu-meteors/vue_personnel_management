@@ -125,7 +125,43 @@
                 </el-table>
             </div>
         </el-tab-pane>
-        <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+        <el-tab-pane label="工资信息" name="fourth">
+            <div><el-table
+                    :data="tableData"
+                    style="width: 100%">
+                <el-table-column
+                        prop="payDateStr"
+                        label="日期"
+                        sortable
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="name"
+                        label="姓名"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="bonus"
+                        label="奖金">
+                </el-table-column>
+                <el-table-column
+                        prop="forfeit"
+                        label="罚金">
+                </el-table-column>
+                <el-table-column
+                        prop="money"
+                        label="基本工资">
+                </el-table-column>
+                <el-table-column
+                        prop="gradeMoney"
+                        label="绩效工资">
+                </el-table-column>
+                <el-table-column
+                        prop="allMoney"
+                        label="实发工资">
+                </el-table-column>
+            </el-table></div>
+        </el-tab-pane>
     </el-tabs>
 
 </template>
@@ -154,6 +190,18 @@
                         money: ''
                     }
                 ],
+                tableData: [{
+                    empNumber: '',
+                    name: '',
+                    bonus: '',
+                    forfeit: '',
+                    money: '',
+                    gradeMoney: '',
+                    allMoney: '',
+                    departmentName: '',
+                    positionName: '',
+                    payDateStr: ''
+                }],
                 ruleForm: {
                     id: '',
                     username: '',
@@ -203,10 +251,6 @@
                         { required: true, message: '请输入默认密码', trigger: 'blur' },
                         { min: 5,max: 16,  message: '请输入正确的密码', trigger: 'blur' }
                     ],
-                    // salary: [
-                    //     { required: true, message: '请输入底薪', trigger: 'blur' },
-                    //     { min: 4,  message: '请输入正确的底薪', trigger: 'blur' }
-                    // ],
                     department: [
                         { required: true, message: '请选择活动区域', trigger: 'change' }
                     ],
@@ -232,6 +276,14 @@
             };
         },
         methods: {
+            getYearSalary(){
+                const me=this
+                const empId=sessionStorage.getItem("empId")
+                axios.get('http://localhost:8181/getSalaryByEmpIdYear/'+empId).then(function (resp) {
+                    me.tableData=resp.data
+                    console.log(resp)
+                })
+            },
             getAward(){
                 const _this=this
                 const empId=sessionStorage.getItem("empId")
@@ -272,6 +324,9 @@
                         break;
                     case  'third':
                         me.getAward();
+                        break;
+                    case 'fourth':
+                        me.getYearSalary()
                         break;
 
                 }
