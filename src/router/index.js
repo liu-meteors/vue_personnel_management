@@ -49,6 +49,10 @@ import NewLogin from "../views/NewLogin";
 import AdminEmpContractHistory from "../views/admin/Contract/AdminEmpContractHistory";
 import AdminHistoryInformation from "../views/admin/Contract/AdminHistoryInformation";
 import EmpAllSalaryInformation from "../views/user/salary/EmpAllSalaryInformation";
+import AdminDepEmployeeInformation from "../views/admin/employee/AdminDepEmployeeInformation";
+import AdminDepInterview from "../views/admin/employee/AdminDepInterview";
+import DepDimissionInformation from "../views/admin/employee/DepDimissionInformation";
+
 
 Vue.use(VueRouter)
 const routes = [
@@ -204,20 +208,24 @@ const routes = [
     path: '/adminIndex',
     name: '部门',
     component: adminIndex,
-    meta:{
-      requireAuth: true
-    },
     // redirect: '/login',
     children: [
       {
         path: '/departmentInformation',
         name: '部门信息',
-        component: DepartmentInformation
+        component: DepartmentInformation,
+        meta:{
+          access: 999
+        }
+
       },
       {
         path: '/addDepartment',
         name: '创建部门',
-        component: AddDepartment
+        component: AddDepartment,
+        meta:{
+          access: 999
+        }
       }
     ]
   },
@@ -229,11 +237,25 @@ const routes = [
       {
         path: '/employeeInformation',
         name: '员工信息',
-        component: EmployeeInformation
+        component: EmployeeInformation,
+        meta:{
+          access: 1
+        }
       },{
       path: '/addEmployee',
         name: '添加员工',
-        component: AddEmployee
+        component: AddEmployee,
+        meta:{
+          access: 0
+        }
+      },
+      {
+        path: '/adminDepEmployeeInformation',
+        name: '部门员工信息',
+        component:AdminDepEmployeeInformation,
+        meta:{
+          access: 0
+        }
       },
       {
         path: '/updateEmployee',
@@ -264,6 +286,14 @@ const routes = [
         component: DimissionInformation
       },
       {
+        path: '/depDimissionInformation',
+        name: '部门离职信息',
+        component: DepDimissionInformation,
+        meta:{
+          access: 0
+        }
+      },
+      {
         path: '/updateDimission',
         name: '修改离职信息',
         component: UpdateDimission
@@ -272,6 +302,14 @@ const routes = [
         path: '/adminInterview',
         name: '面试信息',
         component: AdminInterview
+      },
+      {
+        path: '/adminDepInterview',
+        name: '部门面试信息',
+        component: AdminDepInterview,
+        meta:{
+          access: 0
+        }
       },
       {
         path: '/adminAddInterView',
@@ -377,6 +415,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const identity=sessionStorage.getItem("identity");
   const isLogin = sessionStorage.getItem('isLogin'); //获取本地存储的登陆信息
+  const dep=sessionStorage.getItem('dep');
   // alert(isLogin)
   if (to.name == '登录') { //判断是否进入的login页
     next();
@@ -384,11 +423,38 @@ router.beforeEach((to, from, next) => {
     if (isLogin == "true") {   //同样判断是否登陆
       // console.log(to.matched[0].path)
       if (identity=='admin'){
+
         if (to.matched[0].path=='/userIndex'){
           next({ name: '登录'});
         }else {
           axios.defaults.headers.common['token']=sessionStorage.getItem('identity')+sessionStorage.getItem('empId')
-          next();  //已登录，正常进入
+          if (to.meta.access==999){
+            // alert(11111)
+            if (dep!=0){
+              next({ name: '部门员工信息'});
+            }else {
+              next();
+            }
+          }else if (to.meta.access==0){
+            // alert('需要验证')
+            if (dep==0||dep==1){
+              // alert('不通过'+from.name)
+              next({ name: '员工信息'});
+            }else {
+              next();
+            }
+          }else if (to.meta.access==1){
+            if (dep!=0&&dep!=1){
+              next({ name: '部门员工信息'});
+            }else {
+              next();
+            }
+          }else {
+            next();  //已登录，正常进入
+          }
+
+
+
         }
       }else {
         if (to.matched[0].path=='/userIndex'){

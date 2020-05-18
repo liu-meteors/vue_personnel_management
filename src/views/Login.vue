@@ -54,7 +54,12 @@
                             sessionStorage.setItem('isLogin',true)
                             sessionStorage.setItem('dep',resp.data.dep)
                             sessionStorage.setItem("empId",resp.data.id)
-                            me.$router.replace('/departmentInformation')
+                            if (resp.data.dep==1||resp.data.dep==0){
+                                me.$router.replace('/employeeInformation')
+                            }else {
+                                me.$router.replace('/adminDepEmployeeInformation')
+                            }
+
 
                         }else {
                             sessionStorage.setItem('user',resp.data.user)

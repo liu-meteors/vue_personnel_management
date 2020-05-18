@@ -41,13 +41,16 @@
                             <template slot="title">
                                 <i class="el-icon-user-solid"></i><span>员工管理</span>
                             </template>
-                            <el-menu-item index="/employeeInformation" :route="{name:'员工信息'}">员工信息</el-menu-item>
-                            <el-menu-item index="/addEmployee" :route="{name:'添加员工'}">添加员工</el-menu-item>
-                            <el-menu-item index="/recruitInformation" :route="{name:'招聘信息'}">招聘信息</el-menu-item>
-                            <el-menu-item index="/addRecruit" :route="{name:'发布招聘信息'}">发布招聘</el-menu-item>
-                            <el-menu-item index="/adminInterview" :route="{name:'面试信息'}">面试信息</el-menu-item>
-                            <el-menu-item index="/adminAddInterView" :route="{name:'新增面试'}">新增面试</el-menu-item>
-                            <el-menu-item index="/dimissionInformation" :route="{name:'离职信息'}">离职信息</el-menu-item>
+                            <el-menu-item index="/employeeInformation" v-if="dep==1||dep==0" :route="{name:'员工信息'}">员工信息</el-menu-item>
+                            <el-menu-item index="/adminDepEmployeeInformation" v-if="dep!=1&&dep!=0" :route="{name:'部门员工信息'}">部门员工信息</el-menu-item>
+                            <el-menu-item index="/addEmployee" v-if="dep==1||dep==0" :route="{name:'添加员工'}">添加员工</el-menu-item>
+                            <el-menu-item index="/recruitInformation" v-if="dep==1||dep==0" :route="{name:'招聘信息'}">招聘信息</el-menu-item>
+                            <el-menu-item index="/addRecruit" v-if="dep==1||dep==0" :route="{name:'发布招聘信息'}">发布招聘</el-menu-item>
+                            <el-menu-item index="/adminInterview" v-if="dep==1||dep==0" :route="{name:'面试信息'}">面试信息</el-menu-item>
+                            <el-menu-item index="/adminDepInterview" v-if="dep!=1&&dep!=0" :route="{name:'部门面试信息'}">部门面试信息</el-menu-item>
+                            <el-menu-item index="/adminAddInterView" v-if="dep==1||dep==0" :route="{name:'新增面试'}">新增面试</el-menu-item>
+                            <el-menu-item index="/dimissionInformation" v-if="dep==1||dep==0" :route="{name:'离职信息'}">离职信息</el-menu-item>
+                            <el-menu-item index="/depDimissionInformation" v-if="dep!=1&&dep!=0" :route="{name:'部门离职信息'}">部门离职信息</el-menu-item>
                         </el-submenu>
                         <el-submenu index="7" v-if="dep==1||dep==0">
                             <template slot="title">
