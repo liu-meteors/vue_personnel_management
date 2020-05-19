@@ -52,7 +52,7 @@ import EmpAllSalaryInformation from "../views/user/salary/EmpAllSalaryInformatio
 import AdminDepEmployeeInformation from "../views/admin/employee/AdminDepEmployeeInformation";
 import AdminDepInterview from "../views/admin/employee/AdminDepInterview";
 import DepDimissionInformation from "../views/admin/employee/DepDimissionInformation";
-
+import AdminDepEmpContractHistory from "../views/admin/Contract/AdminDepEmpContractHistory";
 
 Vue.use(VueRouter)
 const routes = [
@@ -393,6 +393,11 @@ const routes = [
         path: '/contractInformation',
         name: '合同信息',
         component: ContractInformation
+      },
+      {
+        path: '/adminDepEmpContractHistory',
+        name: '部门员工合同历史',
+        component:AdminDepEmpContractHistory
       },
       {
         path: '/adminEmpContractHistory',
