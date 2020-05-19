@@ -85,7 +85,8 @@
                                 工资信息
                             </el-menu-item>
 
-                            <el-menu-item index="/adminLeaveInformation"  v-if="dep==1||dep==0" :route="{name:'请假信息'}"><i class="fa fa-envelope-o"></i> 考勤信息</el-menu-item>
+                            <el-menu-item index="/adminLeaveInformation"  v-if="dep==1||dep==0" :route="{name:'请假信息'}"><i class="fa fa-envelope-o"></i> 请假信息</el-menu-item>
+                            <el-menu-item index="/adminDepLeaveInformation"  v-if="dep!=1&&dep!=0" :route="{name:'部门请假信息'}"><i class="fa fa-envelope-o"></i> 请假信息</el-menu-item>
 <!--                            <el-menu-item index="2-2"><i class="fa fa-envelope-o"></i> 工资登记</el-menu-item>-->
                         </el-submenu>
                         <el-submenu index="4">

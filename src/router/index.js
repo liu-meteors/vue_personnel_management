@@ -54,7 +54,7 @@ import AdminDepInterview from "../views/admin/employee/AdminDepInterview";
 import DepDimissionInformation from "../views/admin/employee/DepDimissionInformation";
 import AdminDepEmpContractHistory from "../views/admin/Contract/AdminDepEmpContractHistory";
 import AdminDepSalaryInformation from "../views/admin/Salary/AdminDepSalaryInformation";
-
+import AdminDepLeaveInformation from "../views/admin/RewardAndPunishment/AdminDepLeaveInformation";
 
 
 
@@ -421,6 +421,14 @@ const routes = [
         path: '/adminDepSalaryInformation',
         name: '部门工资信息',
         component:AdminDepSalaryInformation,
+        meta:{
+          access: 0
+        }
+      },
+      {
+        path: '/adminDepLeaveInformation',
+        name: '部门请假信息',
+        component:AdminDepLeaveInformation,
         meta:{
           access: 0
         }
