@@ -55,7 +55,7 @@ import DepDimissionInformation from "../views/admin/employee/DepDimissionInforma
 import AdminDepEmpContractHistory from "../views/admin/Contract/AdminDepEmpContractHistory";
 import AdminDepSalaryInformation from "../views/admin/Salary/AdminDepSalaryInformation";
 import AdminDepLeaveInformation from "../views/admin/RewardAndPunishment/AdminDepLeaveInformation";
-
+import DepRewardAndPunishmentInformation from "../views/admin/RewardAndPunishment/DepRewardAndPunishmentInformation";
 
 
 
@@ -377,6 +377,14 @@ const routes = [
         component: OneRewardAndPunishmentInformation,
         meta:{
           access: 1
+        }
+      },
+      {
+        path: '/depRewardAndPunishmentInformation',
+        name: '部门奖惩信息',
+        component: DepRewardAndPunishmentInformation,
+        meta:{
+          access: 0
         }
       }
     ]

@@ -41,15 +41,15 @@
                         size="mini"
                         placeholder="输入工号搜索"/>
             </template>
-            <template slot-scope="scope">
-                <el-button
-                        size="mini"
-                        @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>
-                <el-button
-                        size="mini"
-                        type="danger"
-                        @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-            </template>
+<!--            <template slot-scope="scope">-->
+<!--                <el-button-->
+<!--                        size="mini"-->
+<!--                        @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>-->
+<!--                <el-button-->
+<!--                        size="mini"-->
+<!--                        type="danger"-->
+<!--                        @click="handleDelete(scope.$index, scope.row)">删除</el-button>-->
+<!--            </template>-->
         </el-table-column>
     </el-table>
 </template>
@@ -71,12 +71,12 @@
             }
         },
         methods: {
-            getAward(){
+            getAward(dep){
                 const _this=this
-              axios.get('http://localhost:8181/getAllAward').then(function (resp) {
-                  console.log(resp.data)
-                  _this.tableData=resp.data
-              })
+                axios.get('http://localhost:8181/getAllDepAward/'+dep).then(function (resp) {
+                    console.log(resp.data)
+                    _this.tableData=resp.data
+                })
             },
             handleEdit(index, row) {
                 console.log(index, row);
@@ -117,7 +117,7 @@
             }
         },
         created() {
-            this.getAward()
+            this.getAward(sessionStorage.getItem('dep'))
         }
     }
 </script>

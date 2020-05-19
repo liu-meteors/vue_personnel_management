@@ -95,10 +95,13 @@
                                 <span> 奖惩管理</span>
                             </template>
 
-                            <el-menu-item index="/rewardAndPunishmentInformation" :route="{name:'奖惩信息'}"><i class="fa fa-address-card-o"></i>
+                            <el-menu-item index="/rewardAndPunishmentInformation"  v-if="dep==1||dep==0" :route="{name:'奖惩信息'}"><i class="fa fa-address-card-o"></i>
+                                奖惩信息
+                            </el-menu-item>
+                            <el-menu-item index="/depRewardAndPunishmentInformation" v-if="dep!=1&&dep!=0" :route="{name:'部门奖惩信息'}"><i class="fa fa-address-card-o"></i>
                                 奖励信息
                             </el-menu-item>
-                            <el-menu-item index="/addRewardOrPunishment" :route="{name:'添加奖惩信息'}"><i class="fa fa-envelope-o"></i> 惩罚登记</el-menu-item>
+                            <el-menu-item index="/addRewardOrPunishment"  v-if="dep==1||dep==0" :route="{name:'添加奖惩信息'}"><i class="fa fa-envelope-o"></i> 奖惩登记</el-menu-item>
                         </el-submenu>
                         <el-submenu index="5" v-if="dep==0">
                             <template slot="title">
