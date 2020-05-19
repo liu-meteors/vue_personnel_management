@@ -72,16 +72,20 @@
                             </el-menu-item>
                             <el-menu-item index="/addDepartment" :route="{name:'创建部门'}"><i class="fa fa-envelope-o"></i> 创建部门</el-menu-item>
                         </el-submenu>
-                        <el-submenu index="3" v-if="dep==1||dep==0">
+                        <el-submenu index="3">
                             <template slot="title">
                                 <i class="el-icon-bank-card"></i>
                                 <span> 薪资管理</span>
                             </template>
 
-                            <el-menu-item index="/adminSalaryInformation" :route="{name:'工资信息'}"><i class="fa fa-address-card-o"></i>
+                            <el-menu-item index="/adminSalaryInformation"  v-if="dep==1||dep==0" :route="{name:'工资信息'}"><i class="fa fa-address-card-o"></i>
                                 工资信息
                             </el-menu-item>
-                            <el-menu-item index="/adminLeaveInformation" :route="{name:'请假信息'}"><i class="fa fa-envelope-o"></i> 考勤信息</el-menu-item>
+                            <el-menu-item index="/adminDepSalaryInformation"  v-if="dep!=1&&dep!=0" :route="{name:'部门工资信息'}"><i class="fa fa-address-card-o"></i>
+                                工资信息
+                            </el-menu-item>
+
+                            <el-menu-item index="/adminLeaveInformation"  v-if="dep==1||dep==0" :route="{name:'请假信息'}"><i class="fa fa-envelope-o"></i> 考勤信息</el-menu-item>
 <!--                            <el-menu-item index="2-2"><i class="fa fa-envelope-o"></i> 工资登记</el-menu-item>-->
                         </el-submenu>
                         <el-submenu index="4">

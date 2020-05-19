@@ -53,6 +53,11 @@ import AdminDepEmployeeInformation from "../views/admin/employee/AdminDepEmploye
 import AdminDepInterview from "../views/admin/employee/AdminDepInterview";
 import DepDimissionInformation from "../views/admin/employee/DepDimissionInformation";
 import AdminDepEmpContractHistory from "../views/admin/Contract/AdminDepEmpContractHistory";
+import AdminDepSalaryInformation from "../views/admin/Salary/AdminDepSalaryInformation";
+
+
+
+
 
 Vue.use(VueRouter)
 const routes = [
@@ -246,7 +251,7 @@ const routes = [
         name: '添加员工',
         component: AddEmployee,
         meta:{
-          access: 0
+          access: 1
         }
       },
       {
@@ -260,30 +265,48 @@ const routes = [
       {
         path: '/updateEmployee',
         name: '修改员工信息',
-        component: UpdateEmployee
+        component: UpdateEmployee,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/recruitInformation',
         name: '招聘信息',
-        component: RecruitInformation
+        component: RecruitInformation,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/addRecruit',
         name: '发布招聘信息',
-        component: AddRecruit
+        component: AddRecruit,
+        meta:{
+          access: 1
+        }
       },{
       path: '/updateRecruit',
         name: '修改招聘信息',
-        component: UpdateRecruit
+        component: UpdateRecruit,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/addDimission',
         name: '添加离职信息',
-        component: AddDimission
+        component: AddDimission,
+        meta:{
+          access: 1
+        }
       },{
       path: '/dimissionInformation',
         name: '离职信息',
-        component: DimissionInformation
+        component: DimissionInformation,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/depDimissionInformation',
@@ -296,12 +319,18 @@ const routes = [
       {
         path: '/updateDimission',
         name: '修改离职信息',
-        component: UpdateDimission
+        component: UpdateDimission,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/adminInterview',
         name: '面试信息',
-        component: AdminInterview
+        component: AdminInterview,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/adminDepInterview',
@@ -314,7 +343,10 @@ const routes = [
       {
         path: '/adminAddInterView',
         name: '新增面试',
-        component: AdminAddInterView
+        component: AdminAddInterView,
+        meta:{
+          access: 1
+        }
       }
     ]
   },
@@ -326,17 +358,26 @@ const routes = [
       {
         path: '/rewardAndPunishmentInformation',
         name: '奖惩信息',
-        component: RewardAndPunishmentInformation
+        component: RewardAndPunishmentInformation,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/addRewardOrPunishment',
         name: '添加奖惩信息',
-        component: AddRewardOrPunishment
+        component: AddRewardOrPunishment,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/oneRewardAndPunishmentInformation',
         name: 'oneRewardAndPunishmentInformation',
-        component: OneRewardAndPunishmentInformation
+        component: OneRewardAndPunishmentInformation,
+        meta:{
+          access: 1
+        }
       }
     ]
   },
@@ -348,7 +389,10 @@ const routes = [
       {
         path: '/adminPromotionInformation',
         name: 'adminPromotionInformation',
-        component: AdminPromotionInformation
+        component: AdminPromotionInformation,
+        meta:{
+          access: 1
+        }
       }
     ]
   },
@@ -362,13 +406,24 @@ const routes = [
         name: '工资信息',
         component: AdminSalaryInformation,
         meta:{
-          who: 1
+          access: 1
         }
       },
       {
         path: '/adminLeaveInformation',
         name: '请假信息',
-        component: AdminLeaveInformation
+        component: AdminLeaveInformation,
+        meta:{
+          access: 1
+        }
+      },
+      {
+        path: '/adminDepSalaryInformation',
+        name: '部门工资信息',
+        component:AdminDepSalaryInformation,
+        meta:{
+          access: 0
+        }
       }
     ]
   },
@@ -380,7 +435,10 @@ const routes = [
       {
         path: '/adminBenefitInformation',
         name: '管理效益',
-        component: AdminBenefitInformation
+        component: AdminBenefitInformation,
+        meta:{
+          access: 1
+        }
       }
     ]
   },
@@ -392,7 +450,10 @@ const routes = [
       {
         path: '/contractInformation',
         name: '合同信息',
-        component: ContractInformation
+        component: ContractInformation,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/adminDepEmpContractHistory',
@@ -402,12 +463,18 @@ const routes = [
       {
         path: '/adminEmpContractHistory',
         name: '所有员工的合同历史',
-        component: AdminEmpContractHistory
+        component: AdminEmpContractHistory,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/adminHistoryInformation',
         name: '员工合同历史',
-        component: AdminHistoryInformation
+        component: AdminHistoryInformation,
+        meta:{
+          access: 1
+        }
       }
     ]
   }
