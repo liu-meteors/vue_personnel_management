@@ -97,11 +97,11 @@
                 </el-table>
             </div>
         </el-tab-pane>
-        <el-tab-pane label="所有信息" name="third">
+        <el-tab-pane label="年效益" name="third">
             <div>
                 <el-table
                         ref="filterTable"
-                        :data="tableData"
+                        :data="yearBenefit"
                         style="width: 100%">
                     <el-table-column
                             prop="benYear"
@@ -111,24 +111,11 @@
                             column-key="date"
                     >
                     </el-table-column>
-                    <el-table-column
-                            prop="quarterStr"
-                            label="季度"
-                            width="180"
-                            :filters="[{ text: '第一季度', value: '第一季度' }, { text: '第二季度', value: '第二季度' },{ text: '第三季度', value: '第三季度' },{ text: '第四季度', value: '第四季度' }]"
-                            :filter-method="filterTag"
-                            filter-placement="bottom-end">
-                        <!--                        <template slot-scope="scope">-->
-                        <!--                            <el-tag-->
-                        <!--                                    :type="scope.row.tag === '家' ? 'primary' : 'success'"-->
-                        <!--                                    disable-transitions>{{scope.row.tag}}</el-tag>-->
-                        <!--                        </template>-->
-                    </el-table-column>
-                    <el-table-column
-                            prop="departmentName"
-                            label="部门"
-                            width="180">
-                    </el-table-column>
+<!--                    <el-table-column-->
+<!--                            prop="departmentName"-->
+<!--                            label="部门"-->
+<!--                            width="180">-->
+<!--                    </el-table-column>-->
                     <el-table-column
                             prop="money"
                             label="效益(单位：万元)"
@@ -165,6 +152,11 @@
                     isFillIn: '',
                     benYear: ''
                 }],
+                yearBenefit:[{
+                    id: '',
+                    yearDate: '',
+                    departmentName: ''
+                }],
                 benefit:{
                     money: '',
                     department: '',
@@ -187,16 +179,23 @@
                     _this.tableData=resp.data
                 })
             },
+            getAllYearBenefit(dep){
+                const _this=this
+                axios.get('http://localhost:8181/getDepYearBenefit/'+dep).then(function (resp) {
+                    console.log(resp.data)
+                    _this.yearBenefit=resp.data
+                })
+            },
             handleClick(tab, event) {
                 switch (tab.name) {
                     case 'first':
                         this.getYearBenefit(  sessionStorage.getItem("dep"))
                         break;
                     case 'second':
-                        this.getYearBenefit(  sessionStorage.getItem("dep"))
+                        this.getAllBenefit(  sessionStorage.getItem("dep"))
                         break;
                     case 'third':
-                        alert(333)
+                        this.getAllYearBenefit(sessionStorage.getItem("dep"))
                         break;
                 }
                 console.log(tab, event);

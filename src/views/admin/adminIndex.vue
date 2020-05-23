@@ -113,13 +113,16 @@
                                 效益信息
                             </el-menu-item>
                         </el-submenu>
-                        <el-submenu index="6" v-if="dep==1||dep==0">
+                        <el-submenu index="6" >
                             <template slot="title">
                                 <i class="el-icon-bank-card"></i>
                                 <span> 晋升管理</span>
                             </template>
 
-                            <el-menu-item index="/adminPromotionInformation" :route="{name:'adminPromotionInformation'}"><i class="fa fa-address-card-o"></i>
+                            <el-menu-item index="/adminPromotionInformation" v-if="dep==1||dep==0" :route="{name:'adminPromotionInformation'}"><i class="fa fa-address-card-o"></i>
+                                晋升信息
+                            </el-menu-item>
+                            <el-menu-item index="/adminDepPromotionInformation" v-if="dep!=1&&dep!=0" :route="{name:'部门晋升信息'}"><i class="fa fa-address-card-o"></i>
                                 晋升信息
                             </el-menu-item>
                         </el-submenu>

@@ -106,6 +106,37 @@
                 </el-table>
             </div>
         </el-tab-pane>
+        <el-tab-pane label="所有信息" name="third">
+            <div>
+                <el-table
+                        ref="filterTable"
+                        :data="yearBenefit"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="benYear"
+                            label="年份"
+                            sortable
+                            width="180"
+                            column-key="date"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                            prop="departmentName"
+                            label="部门"
+                            width="180"
+                            column-key="date"
+                            :filters=departmentFilter
+                            :filter-method="filterDep"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                            prop="money"
+                            label="效益(单位：万元)"
+                    >
+                    </el-table-column>
+                </el-table>
+            </div>
+        </el-tab-pane>
     </el-tabs>
 
 </template>
@@ -131,6 +162,11 @@
                         value: ''
                     }
                 ],
+                yearBenefit:[{
+                    id: '',
+                    yearDate: '',
+                    departmentName: ''
+                }],
                 benefit:{
                     money: '',
                     department: '',
@@ -159,11 +195,20 @@
                     _this.tableData=resp.data
                 })
             },
+            getAllYearBenefit(dep){
+                const _this=this
+                axios.get('http://localhost:8181/getAllYearBenefit').then(function (resp) {
+                    console.log(resp.data)
+                    _this.yearBenefit=resp.data
+                })
+            },
             handleClick(tab, event) {
                 if (tab.name=='first'){
                     this.getYearBenefit()
-                }else {
+                }else if (tab.name=='second') {
                     this.getAllBenefit()
+                }else{
+                    this.getAllYearBenefit()
                 }
                 console.log(tab, event);
             },

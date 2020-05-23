@@ -72,7 +72,7 @@
         methods: {
             getDepartment(){
                 const dep=this
-                axios.get('http://localhost:8181/getAllDepartment').then(function (resp) {
+                    axios.get('http://localhost:8181/getAllDepartment').then(function (resp) {
                     dep.departmentFilter=resp.data
                     console.log(dep.departmentFilter)
                 })

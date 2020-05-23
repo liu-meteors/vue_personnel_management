@@ -279,7 +279,7 @@
             getYearSalary(){
                 const me=this
                 const empId=sessionStorage.getItem("empId")
-                axios.get('http://localhost:8181/getSalaryByEmpIdYear/'+empId).then(function (resp) {
+                    axios.get('http://localhost:8181/getSalaryByEmpIdYear/'+empId).then(function (resp) {
                     me.tableData=resp.data
                     console.log(resp)
                 })

@@ -28,7 +28,7 @@
             <el-form-item label="离职时间" required>
                 <el-col :span="11">
                     <el-form-item prop="leaveDateStr">
-                        <el-date-picker type="date" placeholder="选择离职日期" v-model="ruleForm.leaveDateStr" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date" :picker-options="pickerOption" placeholder="选择离职日期" v-model="ruleForm.leaveDateStr" style="width: 100%;"></el-date-picker>
                     </el-form-item>
                 </el-col>
             </el-form-item>
@@ -59,6 +59,12 @@
                     phone: '',
                     leaveDateStr: '',
                     empId: ''
+                },
+                pickerOption: {
+                    disabledDate(time) {
+                        return time.getTime() < Date.now() - 8.64e7;   //禁用以前的日期，今天不禁用
+                        // return date.getTime() <= Date.now();    //禁用今天以及以前的日期
+                    }
                 },
                 departmentForm: {
                     id: '',
@@ -98,14 +104,11 @@
                 })
             },
             deleteEmp(empId){
+                const _this=this
                 axios.delete('http://localhost:8181/deleteEmp/'+empId).then(function (resp) {
                         if (resp.data=='success'){
+                            alert(222)
                             _this.$router.push('/dimissionInformation')
-                            _this.$message({
-                                showClose: true,
-                                message: '添加成功',
-                                type: 'success'
-                            });
                         }else {
                             _this.$message({
                                 showClose: true,
@@ -118,12 +121,12 @@
             },
             submitForm(formName) {
                 const _this=this
-                alert(_this.ruleForm.delivery)
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         console.log(_this.ruleForm)
 
                         axios.post('http://localhost:8181/addDimission',_this.ruleForm).then(function (resp) {
+                            alert(111)
                             _this.deleteEmp( _this.ruleForm.empId)
                             // _this.$router.push('/recruitInformation')
 

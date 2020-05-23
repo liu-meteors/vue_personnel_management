@@ -122,33 +122,10 @@
                 console.log(index, row);
             },
             handleDelete(index, row) {
-                const _this=this
-                _this.$router.push({
-                    path: '/addDimission',
-                    query:{
-                        username: row.username,
-                        empNumber: row.empNumber,
-                        department: row.department,
-                        posite: row.posite,
-                        empId: row.id
-                    }
+                axios.delete('http://localhost:8181/deleteDimissionById/'+row.id).then(function (resp) {
+                    window.location.reload()
+
                 })
-                // axios.delete('http://localhost:8181/deleteEmp/'+row.id).then(function (resp) {
-                //     if (resp.data=='success'){
-                //         // _this.$message({
-                //         //     showClose: true,
-                //         //     message: '删除成功',
-                //         //     type: 'success'
-                //         // });
-                //         window.location.reload()
-                //     }else {
-                //         _this.$message({
-                //             showClose: true,
-                //             message: '删除失败',
-                //             type: 'error'
-                //         });
-                //     }
-                // })
             }
         },
         created() {

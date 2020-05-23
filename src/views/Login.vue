@@ -22,6 +22,7 @@
     </div>
 </template>
 <script>
+    import AESUntils from "../assets/js/AESUntils";
     export default {
         data() {
             return {
@@ -34,16 +35,15 @@
                 rules: {
                     username: [
                         {required: true, message: "用户名不能为空", trigger: 'blur'},
-                        {min: 3, message: "用户名大于3位", trigger: 'blur'}
                     ],
                     password: [
                         {required: true, message: "密码不能为空", trigger: 'blur'},
-                        {min: 3, max: 10, message: "密码3-5位", trigger: 'blur'}
                     ]
                 }
             };
         },
         methods: {
+
             submitForm(formName) {
                 const me=this
                 axios.post('http://localhost:8181/login',this.form).then(function (resp) {
@@ -73,44 +73,13 @@
 
                     }else{
                         sessionStorage.setItem('isLogin',false)
-                        me.$message({
-                            showClose: true,
-                            message: '登录失败',
-                            type: 'error'
+                        me.$notify.error({
+                            title: '错误',
+                            message: '登录失败'
                         });
                     }
                         console.log(resp.data.code)
                 })
-                // if (this.form.username=='admin'&&this.form.password==='admin'){
-                //     // alert(this.form.username)
-                //     alert(this.form.identity)
-                //     if (this.form.identity=='admin'){
-                //
-                //         this.$router.push('/departmentInformation')
-                //     }else {
-                //         this.$router.push('/userIndex')
-                //     }
-                // }else {
-                //     this.$alert('账号或密码错误','登录失败',{
-                //         confirmButtonText:'确定',
-                //         // callback:action=>{
-                //         //     this.$message({
-                //         //         type: 'info',
-                //         //         message: 'action:${action}'
-                //         //     });
-                //         // }
-                //     })
-                // }
-
-                // this.$refs[formName].validate(valid => {
-                //     // console.log(valid) 验证通过为true，有一个不通过就是false
-                //     if (valid) {
-                //         // 通过的逻辑
-                //     } else {
-                //         console.log('验证失败');
-                //         return false;
-                //     }
-                // });
             }
         }
     };

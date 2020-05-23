@@ -56,7 +56,7 @@
                         // alert(555)
                         axios.post('http://localhost:8181/leaveApply',me.ruleForm).then(function (resp) {
                             if (resp.data=='success'){
-                                me.$router.push('/empUserLeaveCheck')
+                                me.$router.push('/empAllLeave')
                             }else {
                                 me.$message({
                                     showClose: true,

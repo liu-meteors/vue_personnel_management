@@ -22,7 +22,7 @@
             <el-form-item label="时间" required>
                 <el-col :span="11">
                     <el-form-item prop="recordDateStr">
-                        <el-date-picker type="date" placeholder="选择日期" v-model="awardForm.recordDateStr" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date"  :picker-options="pickerOption" placeholder="选择日期" v-model="awardForm.recordDateStr" style="width: 100%;"></el-date-picker>
                     </el-form-item>
                 </el-col>
             </el-form-item>
@@ -36,7 +36,7 @@
                 <el-input type="textarea" v-model="awardForm.awardDescribe"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="submitForm('awardForm')">立即创建</el-button>
+                <el-button type="primary" @click="submitForm('awardForm')">立即提交</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -66,6 +66,11 @@
                     departmentName: '',
                     positionName: '',
                     awardDescribe: ''
+                },
+                pickerOption: {
+                    disabledDate(time) {
+                        return time.getTime() < Date.now() - 8.64e7;
+                    },
                 },
                 departmentForm: {
                     id: '',
@@ -129,7 +134,10 @@
                 axios.get('http://localhost:8181/getEmpByEmpId/'+id).then(function (resp) {
                     console.log(resp.data.emp)
                     if (resp.data.emp==null){
-                        _this.$message.error('此用户不存在');
+                        _this.$notify.error({
+                            title: '错误',
+                            message: '此用户不存在'
+                        });
                         _this.setEmp()
                     }else {
                         _this.ruleForm=resp.data.emp

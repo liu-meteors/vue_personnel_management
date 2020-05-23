@@ -20,7 +20,7 @@
                 <el-radio :label="20">从来没有</el-radio>
             </el-radio-group>
         </el-form-item>
-        <el-form-item label="相公工作素质能否赶得上现在的工作" prop="question3">
+        <el-form-item label="工作素质能否赶得上现在的工作" prop="question3">
             <br>
             <el-radio-group v-model="ruleForm.question3">
                 <el-radio :label="4">非常擦</el-radio>

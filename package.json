@@ -20,6 +20,7 @@
     "@vue/cli-plugin-vuex": "~4.2.0",
     "@vue/cli-service": "~4.2.0",
     "axios": "^0.18.0",
+    "crypto-js": "^4.0.0",
     "less": "^3.11.1",
     "less-loader": "^6.1.0",
     "node-sass": "^4.13.1",

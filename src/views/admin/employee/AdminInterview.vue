@@ -60,9 +60,6 @@
                                     size="mini"
                                     @click="downLoad(scope.$index, scope.row)">下载简历</el-button>
                             <el-button
-                                    size="mini"
-                                    @click="look(scope.$index, scope.row)">预览简历</el-button>
-                            <el-button
                                     :disabled="scope.row.isView==1"
                                     size="mini"
                                     @click="interview(scope.$index, scope.row)">面试</el-button>
@@ -152,9 +149,6 @@
                             <el-button
                                     size="mini"
                                     @click="downLoad(scope.$index, scope.row)">下载简历</el-button>
-                            <el-button
-                                    size="mini"
-                                    @click="look(scope.$index, scope.row)">预览简历</el-button>
                             <el-button
                                     :disabled="scope.row.isView==1"
                                     size="mini"
@@ -324,7 +318,8 @@
 
             },
             downLoad(index, row){
-                window.open('http://localhost:8181/download/'+row.id+'?fileName='+row.name+'的简历.pdf')
+                window.location.href='http://localhost:8181/download/'+row.id+'?fileName='+row.name+'的简历.pdf'
+                // window.open('http://localhost:8181/download/'+row.id+'?fileName='+row.name+'的简历.pdf')
             },
             look(index, row){
                 window.location.href=row.fileUrl

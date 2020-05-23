@@ -65,6 +65,20 @@
                   me.tableData=resp.data
               })
             },
+            getDepLeave(dep){
+                const me=this
+                axios.get('http://localhost:8181/getAllDepLeave/'+dep).then(function (resp) {
+                    me.tableData=resp.data
+                })
+            },
+            isNormal(dep){
+                const me=this
+                if (dep==1){
+                    me.getLeave()
+                }else {
+                    me.getDepLeave(dep)
+                }
+            },
             handleEdit(index, row) {
                 console.log(index, row);
                 this.$router.push({
@@ -98,8 +112,11 @@
                 }
             },
             setDisable(row){
+                //如果是未审批
                  if (row.isCheck=='未审批'){
+                     //如果是人事部的
                     if (sessionStorage.getItem("dep")==1){
+                        //如果是主管
                         if (sessionStorage.getItem('pos')==1){
                             return false
                         }else {
@@ -108,7 +125,7 @@
                     }else {
                         return false
                     }
-                }else if ("审批中"){
+                }else if (row.isCheck=="审批中"){
                     if (sessionStorage.getItem("dep")==1){
                         return false
                     }else {
@@ -120,7 +137,8 @@
             }
         },
         created() {
-            this.getLeave()
+            const dep=sessionStorage.getItem('dep')
+            this.isNormal(dep)
         }
     }
 </script>

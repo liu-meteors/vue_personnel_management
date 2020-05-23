@@ -86,9 +86,9 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         console.log(_this.ruleForm)
-                        _this.$message({
-                            showClose: true,
-                            message: '添加成功',
+                        _this.$notify({
+                            title: '成功',
+                            message: '发布成功',
                             type: 'success'
                         });
                         axios.post('http://localhost:8181/addRecruit',_this.ruleForm).then(function (resp) {

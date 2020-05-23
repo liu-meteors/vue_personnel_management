@@ -36,14 +36,13 @@
                     range-separator="至"
                     start-placeholder="开始日期"
                     end-placeholder="结束日期"
-                    :picker-options="pickerOption"
             >
                 <!--                    :default-time="['12:00:00']"-->
 
             </el-date-picker>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')">立即添加</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
     </el-form>
@@ -178,8 +177,8 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         axios.post('http://localhost:8181/addEmployee',_this.ruleForm).then(function (resp) {
-                            _this.$message({
-                                showClose: true,
+                            _this.$notify({
+                                title: '成功',
                                 message: '添加成功',
                                 type: 'success'
                             });

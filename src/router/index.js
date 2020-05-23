@@ -56,7 +56,7 @@ import AdminDepEmpContractHistory from "../views/admin/Contract/AdminDepEmpContr
 import AdminDepSalaryInformation from "../views/admin/Salary/AdminDepSalaryInformation";
 import AdminDepLeaveInformation from "../views/admin/RewardAndPunishment/AdminDepLeaveInformation";
 import DepRewardAndPunishmentInformation from "../views/admin/RewardAndPunishment/DepRewardAndPunishmentInformation";
-
+import AdminDepPromotionInformation from "../views/admin/Promotion/AdminDepPromotionInformation";
 
 
 Vue.use(VueRouter)
@@ -81,61 +81,58 @@ const routes = [
         path: '/empInformation',
         name: '个人信息',
         component: EmpInformation,
-        meta:[
-          {
-            access:0
-          }
-        ]
+        meta:{
+          access: 999
+        }
+
       },
       {
         path: '/updateEmpInformation',
         name: 'updateEmpInformation',
         component: UpdateEmpInformation,
-        meta:[
-          {
-            access:0
-          }
-        ]
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/salaryInformation',
         name: 'empSalaryInformation',
         component: SalaryInformation,
-        meta:[
-          {
-            access:0
-          }
-        ]
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empRewardAndPunishmentInformation',
         name: 'empRewardAndPunishmentInformation',
         component: EmpRewardAndPunishmentInformation,
-        meta:[
-          {
-            access:0
-          }
-        ]
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empOneRewardAndPunishmentInformation',
         name: 'empOneRewardAndPunishmentInformation',
         component: EmpOneRewardAndPunishmentInformation,
-        meta:[
-          {
-            access:0
-          }
-        ]
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empLeaveApply',
         name: 'empLeaveApply',
-        component: EmpLeaveApply
+        component: EmpLeaveApply,
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empLeaveCheck',
         name: 'empLeaveCheck',
-        component: EmpLeaveCheck
+        component: EmpLeaveCheck,
+        meta:{
+          access: 2
+        }
       },
       {
         path: '/empLeaveProcess',
@@ -145,12 +142,18 @@ const routes = [
       {
         path: '/empAllLeave',
         name: '请假审批进程',
-        component: EmpAllLeave
+        component: EmpAllLeave,
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empLeaveInformation',
         name: 'empLeaveInformation',
-        component: EmpLeaveInformation
+        component: EmpLeaveInformation,
+        meta:{
+          access: 2
+        }
       },
       {
         path: '/empCheck',
@@ -160,12 +163,18 @@ const routes = [
       {
         path: '/gradeInformation',
         name: 'gradeInformation',
-        component: GradeInformation
+        component: GradeInformation,
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empPromotionInformation',
         name: 'empPromotionInformation',
-        component: EmpPromotionInformation
+        component: EmpPromotionInformation,
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empUserLeaveCheck',
@@ -175,37 +184,50 @@ const routes = [
       {
         path: '/empQuestion',
         name: '考核问卷',
-        component: EmpQuestion
+        component: EmpQuestion,
+        meta:{
+          access: 999
+        }
       },
       {
         path: '/empBenefitInformation',
         name: '效益信息',
-        component: EmpBenefitInformation
+        component: EmpBenefitInformation,
+        meta:{
+          access: 3
+        }
       },
       {
         path: '/empRecruitInformation',
         name: '员工招聘信息',
-        component: EmpRecruitInformation
+        component: EmpRecruitInformation,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/empInterview',
         name: '员工面试信息',
-        component: EmpInterview
+        component: EmpInterview,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/empAddInterView',
         name: '添加面试信息',
-        component: EmpAddInterView
+        component: EmpAddInterView,
+        meta:{
+          access: 1
+        }
       },
       {
         path: '/empAllSalaryInformation',
         name: '全部工资信息',
         component: EmpAllSalaryInformation,
-        meta:[
-          {
-            access:-1
-          }
-        ]
+        meta:{
+          access: 999
+        }
       }
     ]
   },
@@ -401,6 +423,14 @@ const routes = [
         meta:{
           access: 1
         }
+      },
+      {
+        path: '/adminDepPromotionInformation',
+        name: '部门晋升信息',
+        component: AdminDepPromotionInformation,
+        meta:{
+          access: 0
+        }
       }
     ]
   },
@@ -504,6 +534,7 @@ router.beforeEach((to, from, next) => {
   const identity=sessionStorage.getItem("identity");
   const isLogin = sessionStorage.getItem('isLogin'); //获取本地存储的登陆信息
   const dep=sessionStorage.getItem('dep');
+  const pos=sessionStorage.getItem('pos');
   // alert(isLogin)
   if (to.name == '登录') { //判断是否进入的login页
     next();
@@ -546,6 +577,34 @@ router.beforeEach((to, from, next) => {
         }
       }else {
         if (to.matched[0].path=='/userIndex'){
+          switch (to.meta.access) {
+            case 1:
+              if (dep==1){
+                next();
+              }else {
+                next({ name: 'empSalaryInformation'});
+              }
+              break;
+            case 2:
+              if (dep==1||pos==1){
+                next()
+              }else {
+                next({ name: 'empSalaryInformation'});
+              }
+              break;
+            case 3:
+              if (pos==1){
+                next()
+              }else {
+                next({ name: 'empSalaryInformation'});
+              }
+
+              break;
+            case 999:
+              next();
+              break;
+
+          }
           axios.defaults.headers.common['token']=sessionStorage.getItem('identity')+sessionStorage.getItem('empId')
           next();  //已登录，正常进入
 
