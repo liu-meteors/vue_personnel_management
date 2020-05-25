@@ -3,14 +3,15 @@
             :data="tableData.filter(data => !search || data.empNumber.toLowerCase().includes(search.toLowerCase()))"
             style="width: 100%">
         <el-table-column
-                label="申请日期"
-                prop="empNumber"
-                sortable
-        >
-        </el-table-column>
-        <el-table-column
                 label="工号"
                 prop="empNumber">
+        </el-table-column>
+        <el-table-column
+                label="职位"
+                :filters="[{text:'主管',value:'主管'},{text:'组长',value:'组长'},{text:'员工',value:'员工'}]"
+                :filter-method="filterPos"
+                column-key="date"
+                prop="positionName">
         </el-table-column>
         <el-table-column
                 label="名称"
@@ -55,7 +56,8 @@
                     id:'',
                     empNumber: '',
                     username: '',
-                    isGrade: ''
+                    isGrade: '',
+                    positionName: ''
                 }],
                 search: ''
             }
@@ -67,6 +69,9 @@
                     console.log(resp.data)
                     me.tableData=resp.data
                 })
+            },
+            filterPos(value, row) {
+                return row.positionName === value;
             },
             handleEdit(index, row) {
 

@@ -1,7 +1,7 @@
 <template>
     <div class="login-container">
-        <el-form ref="form" :rules="rules" :model="form" label-width="80px" class="login-form">
-            <h2 class="login-title">人事管理系统</h2>
+        <el-form ref="form" :rules="rules"  :model="form" label-width="80px" class="login-form">
+            <h2 class="login-title" style="font-size:35px;text-align:right">人 事 管 理 系 统</h2>
             <el-form-item >
                 <el-select v-model="form.identity"  style="width: 100%;">
                     <el-option  label="管理员" value="admin"></el-option>
