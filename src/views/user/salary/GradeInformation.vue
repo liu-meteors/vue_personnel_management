@@ -83,7 +83,7 @@
                     date:nowDate.getDate(),
                 }
                 // alert(date.year+'-'+date.month+'-'+date.date)
-                if (date.date<29){
+                if (date.date<26){
                     this.$notify({
                         title: '警告',
                         message: '现在不是打分时间段',

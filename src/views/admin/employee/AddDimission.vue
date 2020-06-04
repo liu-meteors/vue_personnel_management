@@ -23,12 +23,12 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="交接人" prop="handover">
-                <el-input v-model="ruleForm.handover"  style="width: 60%"></el-input>
+                <el-input :disabled="true" v-model="ruleForm.handover"  style="width: 60%"></el-input>
             </el-form-item>
             <el-form-item label="离职时间" required>
                 <el-col :span="11">
                     <el-form-item prop="leaveDateStr">
-                        <el-date-picker type="date" :picker-options="pickerOption" placeholder="选择离职日期" v-model="ruleForm.leaveDateStr" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date"  placeholder="选择离职日期" v-model="ruleForm.leaveDateStr" style="width: 100%;"></el-date-picker>
                     </el-form-item>
                 </el-col>
             </el-form-item>
@@ -91,6 +91,35 @@
             };
         },
         methods: {
+            setEmp(){
+                this.$prompt('请输入交接员工的员工号', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                }).then(({ value }) => {
+                    this.getEmployeeByEmpId(value)
+                }).catch(() => {
+                    this.$router.push('/employeeInformation')
+                });
+            },
+            getEmployeeByEmpId(id){
+                const _this=this
+                axios.get('http://localhost:8181/getEmpByEmpId/'+id).then(function (resp) {
+                    console.log(resp.data.emp)
+                    if (resp.data.emp==null){
+                        _this.$notify.error({
+                            title: '错误',
+                            message: '此用户不存在'
+                        });
+                        _this.setEmp()
+                    }else {
+                        console.log(resp.data)
+                        _this.ruleForm.handover=resp.data.emp.username
+                        // _this.awardForm.empId=resp.data.emp.id
+                    }
+
+
+                })
+            },
             getDepartment(){
                 const dep=this
                 axios.get('http://localhost:8181/getAllDepartment').then(function (resp) {
@@ -107,7 +136,6 @@
                 const _this=this
                 axios.delete('http://localhost:8181/deleteEmp/'+empId).then(function (resp) {
                         if (resp.data=='success'){
-                            alert(222)
                             _this.$router.push('/dimissionInformation')
                         }else {
                             _this.$message({
@@ -126,7 +154,6 @@
                         console.log(_this.ruleForm)
 
                         axios.post('http://localhost:8181/addDimission',_this.ruleForm).then(function (resp) {
-                            alert(111)
                             _this.deleteEmp( _this.ruleForm.empId)
                             // _this.$router.push('/recruitInformation')
 
@@ -151,6 +178,7 @@
             _this.ruleForm.empNumber=this.$route.query.empNumber
             _this.ruleForm.empId=this.$route.query.empId
             _this.ruleForm.phone=this.$route.query.phone
+            _this.setEmp()
         }
     }
 </script>

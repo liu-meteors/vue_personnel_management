@@ -23,7 +23,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="交接人" prop="handover">
-                <el-input v-model="ruleForm.handover"  style="width: 60%"></el-input>
+                <el-input :disabled="true" v-model="ruleForm.handover"  style="width: 60%"></el-input>
             </el-form-item>
             <el-form-item label="离职时间" required>
                 <el-col :span="11">

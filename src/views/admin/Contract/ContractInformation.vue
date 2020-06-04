@@ -128,20 +128,18 @@
             handleAvatarSuccess(response, file, fileList) {
                 const _this=this
                 _this.tableData[_this.index].fileAddress=response.fileAddress
-                alert( _this.tableData[_this.index].fileAddress)
                 axios.put('http://localhost:8181/updateContract',_this.tableData[_this.index]).then(function (resp) {
                     if (resp.data=='success'){
-
-                        _this.$message({
-                            showClose: true,
+                        _this.$notify({
+                            title: '警告',
                             message: '添加成功',
                             type: 'success'
                         });
                     }else {
-                        _this.$message({
-                            showClose: true,
+                        _this.$notify({
+                            title: '错误',
                             message: '添加失败',
-                            type: 'error'
+                            type: 'danger'
                         });
 
                     }

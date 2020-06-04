@@ -221,6 +221,7 @@
                             message: '添加成功',
                             type: 'success'
                         });
+                        _this.$router.push('/empInterview')
                     }else {
                         _this.$message({
                             showClose: true,

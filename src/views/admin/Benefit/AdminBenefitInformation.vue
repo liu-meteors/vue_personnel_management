@@ -106,7 +106,7 @@
                 </el-table>
             </div>
         </el-tab-pane>
-        <el-tab-pane label="所有信息" name="third">
+        <el-tab-pane label="年效益信息" name="third">
             <div>
                 <el-table
                         ref="filterTable"

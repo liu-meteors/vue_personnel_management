@@ -54,7 +54,7 @@
                         </el-submenu>
                         <el-submenu index="7" >
                             <template slot="title">
-                                <i class="el-icon-user-solid"></i><span>合同管理</span>
+                                <i class="el-icon-folder"></i><span>合同管理</span>
                             </template>
                             <el-menu-item index="/contractInformation" v-if="dep==1||dep==0" :route="{name:'合同信息'}">合同模板</el-menu-item>
                             <el-menu-item index="/adminEmpContractHistory" v-if="dep==1||dep==0" :route="{name:'所有员工的合同历史'}">历史合同</el-menu-item>
@@ -63,7 +63,7 @@
 
                         <el-submenu index="2" v-if="dep==0">
                             <template slot="title">
-                                <i class="el-icon-user-solid"></i>
+                                <i class="el-icon-suitcase"></i>
                                 <span> 部门管理</span>
                             </template>
 
@@ -79,19 +79,20 @@
                             </template>
 
                             <el-menu-item index="/adminSalaryInformation"  v-if="dep==1||dep==0" :route="{name:'工资信息'}"><i class="fa fa-address-card-o"></i>
-                                工资信息
+                                薪资信息
                             </el-menu-item>
                             <el-menu-item index="/adminDepSalaryInformation"  v-if="dep!=1&&dep!=0" :route="{name:'部门工资信息'}"><i class="fa fa-address-card-o"></i>
-                                工资信息
+                                薪资信息
                             </el-menu-item>
 
                             <el-menu-item index="/adminLeaveInformation"  v-if="dep==1||dep==0" :route="{name:'请假信息'}"><i class="fa fa-envelope-o"></i> 请假信息</el-menu-item>
+                            <el-menu-item index="/adminGradeInformation"  v-if="dep==1||dep==0" :route="{name:'历史考核成绩'}"><i class="fa fa-envelope-o"></i> 考核成绩</el-menu-item>
                             <el-menu-item index="/adminDepLeaveInformation"  v-if="dep!=1&&dep!=0" :route="{name:'部门请假信息'}"><i class="fa fa-envelope-o"></i> 请假信息</el-menu-item>
 <!--                            <el-menu-item index="2-2"><i class="fa fa-envelope-o"></i> 工资登记</el-menu-item>-->
                         </el-submenu>
                         <el-submenu index="4">
                             <template slot="title">
-                                <i class="el-icon-bank-card"></i>
+                                <i class="el-icon-connection"></i>
                                 <span> 奖惩管理</span>
                             </template>
 
@@ -105,7 +106,7 @@
                         </el-submenu>
                         <el-submenu index="5" v-if="dep==0">
                             <template slot="title">
-                                <i class="el-icon-bank-card"></i>
+                                <i class="el-icon-s-data"></i>
                                 <span> 效益管理</span>
                             </template>
 
@@ -115,7 +116,7 @@
                         </el-submenu>
                         <el-submenu index="6" >
                             <template slot="title">
-                                <i class="el-icon-bank-card"></i>
+                                <i class="el-icon-sort"></i>
                                 <span> 晋升管理</span>
                             </template>
 

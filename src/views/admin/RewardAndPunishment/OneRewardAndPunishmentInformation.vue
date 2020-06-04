@@ -22,7 +22,7 @@
             <el-form-item label="时间" required>
                 <el-col :span="11">
                     <el-form-item prop="recordDateStr">
-                        <el-date-picker type="date" placeholder="选择签约日期" v-model="awardForm.recordDateStr" style="width: 100%;"></el-date-picker>
+                        <el-date-picker :disabled="true" type="date" placeholder="选择签约日期" v-model="awardForm.recordDateStr" style="width: 100%;"></el-date-picker>
                     </el-form-item>
                 </el-col>
             </el-form-item>
@@ -143,8 +143,8 @@
                         axios.put('http://localhost:8181/updateAward',_this.awardForm).then(function (resp) {
                             // _this.$router.push('/recruitInformation')
                             if (resp.data=='success'){
-                                _this.$message({
-                                    showClose: true,
+                                _this.$notify({
+                                    title: '成功',
                                     message: '修改成功',
                                     type: 'success'
                                 });

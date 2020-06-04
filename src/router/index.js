@@ -57,7 +57,7 @@ import AdminDepSalaryInformation from "../views/admin/Salary/AdminDepSalaryInfor
 import AdminDepLeaveInformation from "../views/admin/RewardAndPunishment/AdminDepLeaveInformation";
 import DepRewardAndPunishmentInformation from "../views/admin/RewardAndPunishment/DepRewardAndPunishmentInformation";
 import AdminDepPromotionInformation from "../views/admin/Promotion/AdminDepPromotionInformation";
-
+import AdminGradeInformation from "../views/admin/Salary/AdminGradeInformation";
 
 Vue.use(VueRouter)
 const routes = [
@@ -456,6 +456,14 @@ const routes = [
         }
       },
       {
+        path: '/adminGradeInformation',
+        name: '历史考核成绩',
+        component: AdminGradeInformation,
+        meta:{
+          access: 1
+        }
+      },
+      {
         path: '/adminDepSalaryInformation',
         name: '部门工资信息',
         component:AdminDepSalaryInformation,
@@ -571,9 +579,6 @@ router.beforeEach((to, from, next) => {
           }else {
             next();  //已登录，正常进入
           }
-
-
-
         }
       }else {
         if (to.matched[0].path=='/userIndex'){

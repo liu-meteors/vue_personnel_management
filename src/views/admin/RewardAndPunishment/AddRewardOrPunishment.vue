@@ -19,13 +19,6 @@
                     <!--                <el-option label="区域二" value="beijing"></el-option>-->
                 </el-select>
             </el-form-item>
-            <el-form-item label="时间" required>
-                <el-col :span="11">
-                    <el-form-item prop="recordDateStr">
-                        <el-date-picker type="date"  :picker-options="pickerOption" placeholder="选择日期" v-model="awardForm.recordDateStr" style="width: 100%;"></el-date-picker>
-                    </el-form-item>
-                </el-col>
-            </el-form-item>
             <el-form-item label="类型" prop="awardType">
                 <el-radio-group v-model="awardForm.awardType">
                     <el-radio :label="1">奖励</el-radio>
@@ -140,6 +133,7 @@
                         });
                         _this.setEmp()
                     }else {
+                        console.log(resp.data)
                         _this.ruleForm=resp.data.emp
                         _this.awardForm.empId=resp.data.emp.id
                     }
