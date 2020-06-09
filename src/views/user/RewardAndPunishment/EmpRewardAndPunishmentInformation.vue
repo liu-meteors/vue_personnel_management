@@ -26,7 +26,7 @@
             <template slot-scope="scope">
                 <el-tag
                         v-if="tableData.length!=0"
-                        :type="scope.row.typeName === '奖励' ? 'success' : 'error'"
+                        :type="scope.row.typeName === '奖励' ? 'success' : 'danger'"
                         disable-transitions>{{scope.row.typeName}}</el-tag>
             </template>
         </el-table-column>

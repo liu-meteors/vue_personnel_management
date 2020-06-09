@@ -53,7 +53,6 @@
                 rules: {
                     salary: [
                         { required: true, message: '请输入底薪', trigger: 'blur' },
-                        { min: 4,  message: '请输入正确的底薪', trigger: 'blur' }
                     ],
                     department: [
                         { required: true, message: '请选择部门', trigger: 'change' }
@@ -92,9 +91,9 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         console.log(_this.ruleForm)
-                        _this.$message({
-                            showClose: true,
-                            message: '添加成功',
+                        _this.$notify({
+                            title: '成功',
+                            message: '修改成功',
                             type: 'success'
                         });
                         axios.put('http://localhost:8181/updateRecruit',_this.ruleForm).then(function (resp) {

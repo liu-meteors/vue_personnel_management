@@ -40,6 +40,7 @@
                     <el-table-column label="编辑">
                         <template slot-scope="scope">
                             <el-button
+                                    :disabled=isFill(scope.row.isFillIn)
                                     size="mini"
                                     @click="handleEdit(scope.$index, scope.row)"
                             >编辑</el-button>
@@ -165,6 +166,13 @@
             };
         },
         methods: {
+            isFill(isFillIn){
+              if (isFillIn==1){
+                  return true
+              }else {
+                  return false
+              }
+            },
             getYearBenefit(dep){
                 const _this=this
                 axios.get('http://localhost:8181/getAllBenefitByDepYear/'+dep).then(function (resp) {

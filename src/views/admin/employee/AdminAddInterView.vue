@@ -215,9 +215,8 @@
                 _this.ruleForm.fileUrl=response.fileUrl
                 axios.post('http://localhost:8181/addInterview',_this.ruleForm).then(function (resp) {
                     if (resp.data=='success'){
-
-                        _this.$message({
-                            showClose: true,
+                        _this.$notify({
+                            title: '成功',
                             message: '添加成功',
                             type: 'success'
                         });

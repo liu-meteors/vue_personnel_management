@@ -44,7 +44,6 @@
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
     </el-form>
 </div>
@@ -119,10 +118,9 @@
                         { required: true, message: '请输入默认密码', trigger: 'blur' },
                         { min: 5,max: 16,  message: '请输入正确的密码', trigger: 'blur' }
                     ],
-                    // salary: [
-                    //     { required: true, message: '请输入底薪', trigger: 'blur' },
-                    //     { min: 4,  message: '请输入正确的底薪', trigger: 'blur' }
-                    // ],
+                    salary: [
+                        { required: true, message: '请输入底薪', trigger: 'blur' },
+                    ],
                     department: [
                         { required: true, message: '请选择活动区域', trigger: 'change' }
                     ],

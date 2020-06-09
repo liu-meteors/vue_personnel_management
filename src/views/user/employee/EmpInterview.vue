@@ -3,6 +3,7 @@
         <el-tab-pane label="今日面试" name="first">
             <div>
                 <el-table
+                        v-loading="loading"
                         :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
                         style="width: 100%">
                     <el-table-column
@@ -59,9 +60,6 @@
                             <el-button
                                     size="mini"
                                     @click="downLoad(scope.$index, scope.row)">下载简历</el-button>
-                            <el-button
-                                    size="mini"
-                                    @click="look(scope.$index, scope.row)">预览简历</el-button>
                             <el-button
                                     :disabled="scope.row.isView==1"
                                     size="mini"
@@ -96,6 +94,7 @@
         <el-tab-pane label="全部信息" name="second">
             <div>
                 <el-table
+                        v-loading="loading"
                         :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
                         style="width: 100%">
                     <el-table-column
@@ -152,9 +151,6 @@
                             <el-button
                                     size="mini"
                                     @click="downLoad(scope.$index, scope.row)">下载简历</el-button>
-                            <el-button
-                                    size="mini"
-                                    @click="look(scope.$index, scope.row)">预览简历</el-button>
                             <el-button
                                     :disabled="scope.row.isView==1"
                                     size="mini"
@@ -224,7 +220,8 @@
                         value: ''
                     }
                 ],
-                search: ''
+                search: '',
+                loading: false
             }
         },
         methods: {
@@ -234,6 +231,7 @@
             },
             updateSend(id){
                 const _this=this
+
                 _this.tableData[_this.sendIndex].isSend=1
                 _this.tableData[_this.sendIndex].isView=1
                 axios.put('http://localhost:8181/updateInterviewById',_this.tableData[_this.sendIndex]).then(function (resp) {
@@ -243,18 +241,22 @@
                             message: '发送成功',
                             type: 'success'
                         });
+                        _this.loading=false;
                     }else {
                         _this.tableData[_this.sendIndex].isSend=0
                         _this.$notify.error({
                             title: '错误',
                             message: '发送失败'
                         });
+                        _this.loading=false;
                     }
                 })
             },
             handleAvatarSuccess(response, file, fileList) {
                 const _this=this
+                _this.loading=true;
                 axios.get('http://localhost:8181/sendOffer/'+response.fileName+'/'+_this.empId).then(function (resp) {
+
                     if (resp.data=='success'){
                         _this.updateSend(_this.empId)
 
@@ -267,6 +269,7 @@
                 })
             },
             handlePreview(file) {
+
                 console.log(file);
             },
             getDepartment(){
@@ -324,7 +327,8 @@
 
             },
             downLoad(index, row){
-                window.open('http://localhost:8181/download/'+row.id+'?fileName='+row.name+'的简历.pdf')
+                window.location.href='http://localhost:8181/download/'+row.id+'?fileName='+row.name+'的简历.pdf'
+                // window.open('http://localhost:8181/download/'+row.id+'?fileName='+row.name+'的简历.pdf')
             },
             look(index, row){
                 window.location.href=row.fileUrl

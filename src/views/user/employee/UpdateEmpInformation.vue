@@ -170,8 +170,8 @@
                     if (valid) {
                         axios.put('http://localhost:8181/updateEmployee',_this.ruleForm).then(function (resp) {
                             if (resp.data=='success'){
-                                _this.$message({
-                                    showClose: true,
+                                _this.$notify({
+                                    title: '成功',
                                     message: '修改成功',
                                     type: 'success'
                                 });

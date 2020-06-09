@@ -88,10 +88,10 @@
 
                 },
                 rules: {
-                    // salary: [
-                    //     { required: true, message: '请输入底薪', trigger: 'blur' },
-                    //     { min: 4,  message: '请输入正确的底薪', trigger: 'blur' }
-                    // ],
+                    money: [
+                        { required: true, message: '请输入金额', trigger: 'blur' },
+                        {  message: '请输入正确的金额', trigger: 'blur' }
+                    ],
 
                     signDateStr: [
                         {  required: true, message: '请选择日期', trigger: 'change' }
@@ -162,8 +162,8 @@
                         axios.post('http://localhost:8181/addAward',_this.awardForm).then(function (resp) {
                             // _this.$router.push('/recruitInformation')
                             if (resp.data=='success'){
-                                _this.$message({
-                                    showClose: true,
+                                _this.$notify({
+                                    title: '成功',
                                     message: '添加成功',
                                     type: 'success'
                                 });

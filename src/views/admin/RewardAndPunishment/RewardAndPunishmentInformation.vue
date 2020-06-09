@@ -29,7 +29,7 @@
                 :filter-method="filterHandler">
             <template slot-scope="scope">
                 <el-tag
-                        :type="scope.row.typeName === '奖励' ? 'success' : 'error'"
+                        :type="scope.row.typeName === '奖励' ? 'success' : 'danger'"
                         disable-transitions>{{scope.row.typeName}}</el-tag>
             </template>
         </el-table-column>
@@ -44,7 +44,7 @@
             <template slot-scope="scope">
                 <el-button
                         size="mini"
-                        @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>
+                        @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                 <el-button
                         size="mini"
                         type="danger"

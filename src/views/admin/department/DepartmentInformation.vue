@@ -37,13 +37,13 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination
-                background
-                layout="prev, pager, next"
-                :page-size="pageSize"
-                :total="total"
-                @current-change="page">
-        </el-pagination>
+<!--        <el-pagination-->
+<!--                background-->
+<!--                layout="prev, pager, next"-->
+<!--                :page-size="pageSize"-->
+<!--                :total="total"-->
+<!--                @current-change="page">-->
+<!--        </el-pagination>-->
     </div>
 
 </template>

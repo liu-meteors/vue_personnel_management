@@ -41,10 +41,15 @@
                                     placeholder="输入工号搜索"/>
                         </template>
                         <template slot-scope="scope">
+<!--                            <el-button-->
+<!--                                    :disabled="scope.row.isCheck!='未审批'"-->
+<!--                                    size="mini"-->
+<!--                                    @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>-->
                             <el-button
-                                    :disabled="scope.row.isCheck!='未审批'"
+
                                     size="mini"
-                                    @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>
+                                    type="danger"
+                                    @click="handleEdit(scope.$index, scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -92,9 +97,10 @@
                         </template>
                         <template slot-scope="scope">
                             <el-button
-                                    :disabled="scope.row.isCheck!='未审批'"
+
                                     size="mini"
-                                    @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>
+                                    type="danger"
+                                    @click="handleEdit(scope.$index, scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -135,12 +141,8 @@
                 })
             },
             handleEdit(index, row) {
-                console.log(index, row);
-                this.$router.push({
-                    path:'/empLeaveInformation',
-                    query:{
-                        leaveId: row.id
-                    }
+                axios.delete('http://localhost:8181/deleteLeaveById/'+row.id).then(function (resp) {
+                    window.location.reload()
                 })
             },
             handleDelete(index, row) {

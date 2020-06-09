@@ -41,15 +41,15 @@
                             label="效益(单位：万元)"
                             >
                     </el-table-column>
-                    <el-table-column label="编辑">
-                        <template slot-scope="scope">
-                            <el-button
-                                    size="mini"
-                                    @click="handleEdit(scope.$index, scope.row)"
-                                    :disabled="scope.row.isFillIn==1"
-                            >编辑</el-button>
-                        </template>
-                    </el-table-column>
+<!--                    <el-table-column label="编辑">-->
+<!--                        <template slot-scope="scope">-->
+<!--                            <el-button-->
+<!--                                    size="mini"-->
+<!--                                    @click="handleEdit(scope.$index, scope.row)"-->
+<!--                                    :disabled="scope.row.isFillIn==1"-->
+<!--                            >编辑</el-button>-->
+<!--                        </template>-->
+<!--                    </el-table-column>-->
                 </el-table>
             </div>
         </el-tab-pane>

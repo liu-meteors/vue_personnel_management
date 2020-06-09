@@ -46,40 +46,40 @@
                         active-text-color="#ffd04b"
 
                 >
-                    <el-menu-item index="/salaryInformation" :route="{name:'empSalaryInformation'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/salaryInformation" :route="{name:'empSalaryInformation'}"><i class="el-icon-s-home"></i>
                         本月总览
                     </el-menu-item>
-                    <el-menu-item index="/empRecruitInformation" v-if="dep==1" :route="{name:'员工招聘信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empRecruitInformation" v-if="dep==1" :route="{name:'员工招聘信息'}"><i class="el-icon-s-ticket"></i>
                         招聘信息
                     </el-menu-item>
                     <el-menu-item index="/empAllSalaryInformation" :route="{name:'全部工资信息'}"><i class="el-icon-bank-card"></i>
                         工资信息
                     </el-menu-item>
-                    <el-menu-item index="/empInterview" v-if="dep==1" :route="{name:'员工面试信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empInterview" v-if="dep==1" :route="{name:'员工面试信息'}"><i class="el-icon-s-grid"></i>
                         面试信息
                     </el-menu-item>
-                    <el-menu-item index="/empAddInterView" v-if="dep==1" :route="{name:'添加面试信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empAddInterView" v-if="dep==1" :route="{name:'添加面试信息'}"><i class="el-icon-circle-plus"></i>
                         新增面试
                     </el-menu-item>
-                    <el-menu-item index="/empRewardAndPunishmentInformation" :route="{name:'empRewardAndPunishmentInformation'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empRewardAndPunishmentInformation" :route="{name:'empRewardAndPunishmentInformation'}"><i class="el-icon-pie-chart"></i>
                         奖惩信息
                     </el-menu-item>
-                    <el-menu-item index="/empLeaveApply" :route="{name:'empLeaveApply'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empLeaveApply" :route="{name:'empLeaveApply'}"><i class="el-icon-s-order"></i>
                         请假申请
                     </el-menu-item>
-                    <el-menu-item v-if="dep==1||pos==1" index="/empLeaveCheck" :route="{name:'empLeaveCheck'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item v-if="dep==1||pos==1" index="/empLeaveCheck" :route="{name:'empLeaveCheck'}"><i class="el-icon-s-check"></i>
                         请假审批
                     </el-menu-item>
-                    <el-menu-item  index="/empAllLeave" :route="{name:'请假审批进程'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item  index="/empAllLeave" :route="{name:'请假审批进程'}"><i class="el-icon-news"></i>
                         查看请假
                     </el-menu-item>
-                    <el-menu-item index="/gradeInformation" :route="{name:'gradeInformation'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/gradeInformation" :route="{name:'gradeInformation'}"><i class="el-icon-s-finance"></i>
                         绩效打分
                     </el-menu-item>
-                    <el-menu-item index="/empPromotionInformation" :route="{name:'empPromotionInformation'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empPromotionInformation" :route="{name:'empPromotionInformation'}"><i class="el-icon-sort"></i>
                         晋升信息
                     </el-menu-item>
-                    <el-menu-item index="/empBenefitInformation" v-if="pos==1" :route="{name:'效益信息'}"><i class="el-icon-bank-card"></i>
+                    <el-menu-item index="/empBenefitInformation" v-if="pos==1" :route="{name:'效益信息'}"><i class="el-icon-s-data"></i>
                         效益信息
                     </el-menu-item>
 
