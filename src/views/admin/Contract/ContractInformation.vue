@@ -27,10 +27,10 @@
                                 action="http://localhost:8181/importContract"
                                 :on-preview="handlePreview"
                                 :on-remove="handleRemove"
-                                :before-remove="beforeRemove"
                                 multiple
                                 :limit="1"
                                 accept=".doc, .docx"
+                                :beforeUpload="beforeAvatarUpload"
                                 :on-exceed="handleExceed"
                                 :on-success="handleAvatarSuccess"
                                 :file-list="fileList">
@@ -112,6 +112,12 @@
             },
             edit(index, row) {
 
+            },
+            beforeAvatarUpload(file){
+                if (file.size/1024/1024>100){
+                    this.$message.error('文件不能大于100MB');
+                    return false
+                }
             },
             handleRemove(file, fileList) {
                 console.log(file, fileList);

@@ -89,10 +89,9 @@
 
                 },
                 rules: {
-                    // salary: [
-                    //     { required: true, message: '请输入底薪', trigger: 'blur' },
-                    //     { min: 4,  message: '请输入正确的底薪', trigger: 'blur' }
-                    // ],
+                    money: [
+                        { required: true, message: '请输入底薪', trigger: 'blur' },
+                    ],
                     signDateStr: [
                         {  required: true, message: '请选择日期', trigger: 'change' }
                     ],

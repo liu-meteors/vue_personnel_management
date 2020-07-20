@@ -11,7 +11,7 @@
             <el-input v-model="ruleForm.address" style="width: 60%"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-            <el-input v-model="ruleForm.password" type="password" style="width: 60%"></el-input>
+            <el-input v-model="ruleForm.password" show-password type="password" style="width: 60%"></el-input>
         </el-form-item>
         <el-form-item label="底薪" prop="salary">
             <el-input v-model="ruleForm.salary" type="number" style="width: 60%"></el-input>

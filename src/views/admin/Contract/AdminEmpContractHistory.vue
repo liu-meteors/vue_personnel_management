@@ -48,6 +48,7 @@
                                 :limit="1"
                                 accept=".pdf, .PDF"
                                 :on-success="handleAvatarSuccess"
+                                :beforeUpload="beforeAvatarUpload"
                                 :file-list="fileList">
                             <el-button size="small" type="primary">点击上传</el-button>
                             <div slot="tip" class="el-upload__tip">只能上传pdf文件，且不超过100MB</div>
@@ -143,6 +144,12 @@
                         window.open('http://localhost:8181/downloadHistory/'+resp.data.id+'?fileName='+row.username+row.empNumber+'的合同.pdf')
                     }
                })
+            },
+            beforeAvatarUpload(file){
+                if (file.size/1024/1024>100){
+                    this.$message.error('文件不能大于100MB');
+                    return false
+                }
             },
             handleDelete(index, row) {
                 const _this=this

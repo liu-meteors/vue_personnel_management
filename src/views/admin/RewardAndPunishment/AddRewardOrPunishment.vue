@@ -103,7 +103,8 @@
                         { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
                     ],
                     awardDescribe: [
-                        { required: true, message: '请填写理由', trigger: 'blur' }
+                        { required: true, message: '请填写理由', trigger: 'blur' },
+                        { min: 5,max: 250,  message: '请输入合适的理由', trigger: 'blur' }
                     ],
                     awardType: [
                         { required: true, message: '请填写类型', trigger: 'blur' }
